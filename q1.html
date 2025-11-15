@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<title>小謎1</title>
+<link rel="stylesheet" href="style.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/check.js"></script>
+</head>
+<body>
+<h2>小謎1</h2>
+<p>ここに問題文を記載</p>
+<input type="text" id="answer" placeholder="答えを入力" />
+<button class="btn" onclick="checkAnswer('q1')">送信</button>
+
+
+<!-- ポップアップ部分 -->
+<div id="popup" class="popup_hidden">
+<div class="popup_inner">
+<p class="popup_text">正解！</p>
+<img src="img/q1_correct.png" alt="正解画像" />
+<a href="q2.html" class="btn">次の問題へ</a>
+</div>
+</div>
+</body>
+</html>
