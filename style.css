@@ -1,0 +1,77 @@
+<!-- style.css -->
+body {
+font-family: sans-serif;
+padding: 20px;
+background: #f7f7f7;
+}
+.btn {
+display: inline-block;
+margin-top: 20px;
+padding: 10px 20px;
+background: #0078ff;
+color: #fff;
+border-radius: 6px;
+text-decoration: none;
+}
+input {
+padding: 8px;
+width: 200px;
+margin-top: 10px;
+}
+
+
+/* ポップアップ */
+.popup_hidden {
+display: none;
+}
+#popup {
+position: fixed;
+top: 0;
+left: 0;
+width: 100vw;
+height: 100vh;
+background: rgba(0, 0, 0, 0.5);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.popup_inner {
+background: white;
+padding: 20px;
+border-radius: 10px;
+text-align: center;
+animation: fadein 0.6s ease;
+}
+.popup_text {
+font-size: 24px;
+font-weight: bold;
+margin-bottom: 10px;
+}
+@keyframes fadein {
+from { opacity: 0; transform: scale(0.7); }
+to { opacity: 1; transform: scale(1); }
+}
+
+
+/* check.js */
+const answers = {
+q1: "APPLE", // 小謎1
+q2: "DOG", // 小謎2
+q3: "STAR", // 小謎3
+q4: "BLUE",
+q5: "CAT",
+q6: "GREEN",
+q7: "MOON"
+};
+
+
+function checkAnswer(id) {
+const input = document.getElementById("answer").value.trim().toUpperCase();
+
+
+if (input === answers[id]) {
+$("#popup").fadeIn(300);
+} else {
+alert("不正解です。もう一度試してね。");
+}
+}
