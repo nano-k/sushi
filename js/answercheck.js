@@ -19,7 +19,7 @@ function AnswerCheck(form) {
       let match = null;
 
       // -------------------------
-      // ⭐ 配列形式（分岐対応）
+      // 配列形式（分岐対応）
       // -------------------------
       if (Array.isArray(resp)) {
         for (let item of resp) {
@@ -35,7 +35,7 @@ function AnswerCheck(form) {
         }
       } 
       // -------------------------
-      // ⭐ 単体オブジェクト形式（従来方式）
+      // 単体オブジェクト形式（従来方式）
       // -------------------------
       else {
         let ans = resp.answer;
