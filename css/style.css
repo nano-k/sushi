@@ -144,8 +144,8 @@ h2 {
 /* 画像上部に重ねる文字 */
 .correct-text {
   position: absolute;
-  top: -5%;          /* 上端付近 */
-  left: 55%;
+  top: -3%;          /* 上端付近 */
+  left: 50%;
   transform: translateX(-50%);
   font-size: 2.2rem;
   color: #FFFACD;    /* 黄文字 */
