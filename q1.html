@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <title>小謎1</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="js/answercheck.js"></script>
 </head>
 <body>
@@ -16,10 +17,13 @@
   </div>
 
   <!-- 解答フォーム -->
-  <div class="answer-box">
-    <input id="answer" type="text" placeholder="答えを入力" autocomplete="off">
-    <button onclick="checkAnswer('q1')">送信</button>
-  </div>
+  <form name="q1" onsubmit="AnswerCheck(this); return false;">
+    <div class="answer-box">
+      <input type="text" name="answer" placeholder="答えを入力" autocomplete="off">
+      <button type="submit">送信</button>
+    </div>
+    <div class="result"></div>
+  </form>
 
   <!-- 正解ポップアップ -->
   <div id="popup" class="popup hidden">
