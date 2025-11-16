@@ -70,7 +70,7 @@ h2 {
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.3s ease; /* 爽快フェード */
+  transition: opacity 0.3s ease;
 }
 
 .popup.show {
@@ -84,49 +84,35 @@ h2 {
 
 /* ポップアップ内容 */
 .popup-content {
-  background: transparent;
-  text-align: center;
-  display: flex;
-  flex-direction: column-reverse; /* 文字を上、画像下 */
-  align-items: center;
-  animation: fadeInPopup 0.3s ease forwards; /* 爽快感あるフェード */
+  position: relative; /* 文字を重ねる基準 */
+  display: inline-block;
 }
 
 .popup-content img {
   width: 80%;
   max-width: 400px;
   border-radius: 8px;
-  margin-top: 10px; /* 正解文字との間隔 */
+  display: block;
 }
 
-/* 「正解！」文字 */
+/* 画像上に重ねる文字 */
 .correct-text {
+  position: absolute;
+  top: 50%;       /* 画像中央 */
+  left: 50%;
+  transform: translate(-50%, -50%);
   font-size: 2.5rem;
-  color: #ff3333; /* 赤色 */
-  margin-bottom: 10px;
+  color: #ffffff; /* 白文字 */
   font-weight: bold;
-  text-shadow: 0 0 8px rgba(255,50,50,0.8);
-  animation: popInText 0.5s ease forwards; /* アニメーション */
+  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+  opacity: 0;
+  animation: fadeInText 0.5s ease forwards;
 }
 
 /* フェードインアニメーション */
-@keyframes fadeInPopup {
-  from {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* 正解文字アニメーション */
-@keyframes popInText {
-  0%   { opacity: 0; transform: scale(0.5); }
-  50%  { opacity: 1; transform: scale(1.3); }
-  80%  { transform: scale(0.95); }
-  100% { transform: scale(1); }
+@keyframes fadeInText {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* ゲーム説明ページ用ボタン */
