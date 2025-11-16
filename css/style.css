@@ -44,6 +44,14 @@ h2 {
   line-height: 1.5;
 }
 
+/* 見出し画像 */
+.title-image img {
+  width: 50%;         /* 画像の幅調整 */
+  max-width: 300px;   /* 最大幅 */
+  display: block;
+  margin: 0 auto 15px auto;  /* 上下の余白、中央寄せ */
+}
+
 /* 謎画像 */
 .puzzle-image img {
   width: 90%;
