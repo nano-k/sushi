@@ -59,24 +59,20 @@ function showCorrectPopup(nextPage, imagePath) {
   const popup = document.getElementById("popup");
   const popupImage = document.getElementById("popupImage");
 
-  // ページロード時に常に非表示に
-  popup.classList.add("hidden");
-  popup.classList.remove("show");
-
+ 
   // 画像差し替え
   popupImage.src = imagePath;
 
-  // ポップアップ表示
-  setTimeout(() => {
-    popup.classList.remove("hidden");
-    popup.classList.add("show");
-  }, 50); // 少し遅延させて強制リフレッシュ
 
   // 自動遷移（1.5秒後）
   setTimeout(() => {
     window.location.href = nextPage;
   }, 1500);
 
-  // ブラウザバック対策
-  history.replaceState(null, null, location.href);
-}
+// ページ読み込み時にポップアップを非表示に
+window.addEventListener("pageshow", function(event) {
+  const popup = document.getElementById("popup");
+  if (popup) {
+    popup.classList.remove("show");
+    popup.classList.add("hidden");
+  }
