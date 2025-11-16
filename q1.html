@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-<meta charset="UTF-8" />
-<title>小謎1</title>
-<link rel="stylesheet" href="style.css" />
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="js/check.js"></script>
+  <meta charset="UTF-8">
+  <title>小謎1</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/answercheck.js"></script>
 </head>
 <body>
-<h2>小謎1</h2>
-<p>ここに問題文を記載</p>
-<input type="text" id="answer" placeholder="答えを入力" />
-<button class="btn" onclick="checkAnswer('q1')">送信</button>
 
+  <h2>小謎1</h2>
 
-<!-- ポップアップ部分 -->
-<div id="popup" class="popup_hidden">
-<div class="popup_inner">
-<p class="popup_text">正解！</p>
-<img src="img/q1_correct.png" alt="正解画像" />
-<a href="q2.html" class="btn">次の問題へ</a>
-</div>
-</div>
+  <!-- 謎画像 -->
+  <div class="puzzle-image">
+    <img src="img/q1_puzzle.png" alt="小謎1">
+  </div>
+
+  <!-- 解答フォーム -->
+  <div class="answer-box">
+    <input id="answer" type="text" placeholder="答えを入力" autocomplete="off">
+    <button onclick="checkAnswer('q1')">送信</button>
+  </div>
+
+  <!-- 正解ポップアップ -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <img id="popupImage" src="img/q1_correct.png" alt="正解！">
+      <p class="correct-text">正解！</p>
+    </div>
+  </div>
+
 </body>
 </html>
