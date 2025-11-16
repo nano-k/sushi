@@ -18,25 +18,25 @@ function AnswerCheck(form) {
       timeout: 3000,
     })
     .done(function(resp) {
-      let ans = resp["answer"];       // 正解（配列 or 文字列）
-      let nextPage = resp["next"];    // 遷移先ページ
+      let ans = resp.answer;      // 正解文字列 or 配列
+      let nextPage = resp.next;   // 遷移先
 
       let isCorrect = false;
 
       if (Array.isArray(ans)) {
-        isCorrect = ans.includes(send_text);  // 完全一致判定
+        isCorrect = ans.includes(send_text);  // 完全一致
       } else {
         isCorrect = (send_text === ans);
       }
 
       if (isCorrect) {
-        showCorrectPopup(nextPage);   // 正解ポップアップ
+        showCorrectPopup(nextPage);   // 正解ポップアップ表示
       } else {
-        $(form).next(".result").text("「" + send_text + "」は不正解です。");
+        $(form).find(".result").text("「" + send_text + "」は不正解です。");
       }
     })
     .fail(function() {
-      $(form).next(".result").text("判定データがありません");
+      $(form).find(".result").text("判定データがありません");
     })
     .always(function() {
       $(form).find('button[type=submit]').prop('disabled', false);
