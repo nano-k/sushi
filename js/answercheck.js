@@ -16,11 +16,10 @@ function AnswerCheck(form) {
       timeout: 3000,
     })
     .done(function(resp) {
-
       let match = null;
 
       // -------------------------
-      // ⭐ 分岐（配列形式）の場合
+      // ⭐ 配列形式（分岐対応）
       // -------------------------
       if (Array.isArray(resp)) {
         for (let item of resp) {
@@ -30,13 +29,13 @@ function AnswerCheck(form) {
             : (send_text === ans);
 
           if (ok) {
-            match = item; 
+            match = item;
             break;
           }
         }
       } 
       // -------------------------
-      // ⭐ 単体オブジェクト形式の場合
+      // ⭐ 単体オブジェクト形式（従来方式）
       // -------------------------
       else {
         let ans = resp.answer;
@@ -60,6 +59,7 @@ function AnswerCheck(form) {
       // -------------------------
       let imagePath = match.image || ("img/" + form.name + "_correct.png");
       showCorrectPopup(match.next, imagePath);
+
     })
     .fail(function() {
       $(form).find(".result").text("判定データがありません");
@@ -73,21 +73,28 @@ function AnswerCheck(form) {
   }
 }
 
-
 function showCorrectPopup(nextPage, imagePath) {
   const popup = document.getElementById("popup");
   const popupImage = document.getElementById("popupImage");
 
+  // 画像差し替え
   popupImage.src = imagePath;
 
+  // ポップアップ表示
   popup.classList.remove("hidden");
   popup.classList.add("show");
 
-  // タップで閉じて次へ
+  // 自動遷移（1.5秒後）
+  const timer = setTimeout(() => {
+    window.location.href = nextPage;
+  }, 1500);
+
+  // タップでも即遷移
   popup.addEventListener("click", () => {
+    clearTimeout(timer); // タイマー解除
     window.location.href = nextPage;
   }, { once: true });
 
-  // バックした時にポップアップを再表示しない
+  // ブラウザバックでポップアップ再表示防止
   history.replaceState(null, null, location.href);
 }
