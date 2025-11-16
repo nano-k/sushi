@@ -47,7 +47,7 @@ h2 {
 /* 見出し画像 */
 .title-image img {
   width: 50%;         /* 画像の幅調整 */
-  max-width: 50px;   /* 最大幅 */
+  max-width: 75px;   /* 最大幅 */
   display: block;
   margin: 0 auto 15px auto;  /* 上下の余白、中央寄せ */
 }
@@ -144,7 +144,7 @@ h2 {
 /* 画像上部に重ねる文字 */
 .correct-text {
   position: absolute;
-  top: 0%;          /* 上端付近 */
+  top: -10%%;          /* 上端付近 */
   left: 55%;
   transform: translateX(-50%);
   font-size: 2.2rem;
