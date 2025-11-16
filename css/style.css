@@ -11,6 +11,18 @@ h2 {
   margin-bottom: 20px;
 }
 
+.left-text {
+  text-align: left;   /* 左揃え */
+}
+
+.right-text {
+  text-align: right;  /* 右揃え */
+}
+
+.center-text {
+  text-align: center; /* 中央揃え */
+}
+
 /* ルール説明 */
 .rule-box {
   background-color: #fff8c6;  /* 薄い黄色 */
