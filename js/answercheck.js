@@ -16,20 +16,50 @@ function AnswerCheck(form) {
       timeout: 3000,
     })
     .done(function(resp) {
-      let ans = resp.answer;
-      let nextPage = resp.next;
-      let imagePath = resp.image || ("img/" + form.name + "_correct.png"); 
-      // ↑ image が無いなら従来の固定画像にフォールバック
 
-      let isCorrect = Array.isArray(ans)
-        ? ans.includes(send_text)
-        : (send_text === ans);
+      let match = null;
 
-      if (isCorrect) {
-        showCorrectPopup(nextPage, imagePath);
-      } else {
-        $(form).find(".result").text("「" + send_text + "」は不正解です。");
+      // -------------------------
+      // ⭐ 分岐（配列形式）の場合
+      // -------------------------
+      if (Array.isArray(resp)) {
+        for (let item of resp) {
+          let ans = item.answer;
+          let ok = Array.isArray(ans)
+            ? ans.includes(send_text)
+            : (send_text === ans);
+
+          if (ok) {
+            match = item; 
+            break;
+          }
+        }
+      } 
+      // -------------------------
+      // ⭐ 単体オブジェクト形式の場合
+      // -------------------------
+      else {
+        let ans = resp.answer;
+        let ok = Array.isArray(ans)
+          ? ans.includes(send_text)
+          : (send_text === ans);
+
+        if (ok) match = resp;
       }
+
+      // -------------------------
+      // ❌ 不正解
+      // -------------------------
+      if (!match) {
+        $(form).find(".result").text("「" + send_text + "」は不正解です。");
+        return;
+      }
+
+      // -------------------------
+      // ⭕ 正解 → ポップアップ表示
+      // -------------------------
+      let imagePath = match.image || ("img/" + form.name + "_correct.png");
+      showCorrectPopup(match.next, imagePath);
     })
     .fail(function() {
       $(form).find(".result").text("判定データがありません");
@@ -43,6 +73,7 @@ function AnswerCheck(form) {
   }
 }
 
+
 function showCorrectPopup(nextPage, imagePath) {
   const popup = document.getElementById("popup");
   const popupImage = document.getElementById("popupImage");
@@ -52,11 +83,11 @@ function showCorrectPopup(nextPage, imagePath) {
   popup.classList.remove("hidden");
   popup.classList.add("show");
 
-  // タップで閉じる＋次ページへ
+  // タップで閉じて次へ
   popup.addEventListener("click", () => {
     window.location.href = nextPage;
   }, { once: true });
 
-  // バックした時に表示されないように
+  // バックした時にポップアップを再表示しない
   history.replaceState(null, null, location.href);
 }
