@@ -144,7 +144,7 @@ h2 {
 /* 画像上部に重ねる文字 */
 .correct-text {
   position: absolute;
-  top: -10%%;          /* 上端付近 */
+  top: -10%;          /* 上端付近 */
   left: 55%;
   transform: translateX(-50%);
   font-size: 2.2rem;
