@@ -11,9 +11,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-p {
-  text-align: left;  /* デフォルトを左揃えに */
-}
 
 /* 謎画像 */
 .puzzle-image img {
