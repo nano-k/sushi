@@ -84,7 +84,7 @@ h2 {
 
 /* ポップアップ内容 */
 .popup-content {
-  position: relative; /* 文字を重ねる基準 */
+  position: relative;
   display: inline-block;
 }
 
@@ -95,24 +95,21 @@ h2 {
   display: block;
 }
 
-/* 画像上部に重ねる文字（白＋黄色縁取り） */
+/* 画像上部に重ねる文字 */
 .correct-text {
   position: absolute;
-  top: 5%;          /* 画像上端から5%下 */
+  top: 5%; 
   left: 50%;
   transform: translateX(-50%);
   font-size: 2.2rem;
-  color: #ffffff;    /* 文字色は白 */
+  color: #ffffff;
   font-weight: bold;
-
-  /* 黄色縁取り */
   text-shadow:
      -2px -2px 0 #ffff00,
       2px -2px 0 #ffff00,
      -2px  2px 0 #ffff00,
       2px  2px 0 #ffff00,
       0   0   4px #ffff00;
-
   opacity: 0;
   animation: fadeInText 0.5s ease forwards;
 }
@@ -138,4 +135,37 @@ h2 {
 
 .btn:hover {
   background: #005fcc;
+}
+
+/* ===== スマホ版レスポンシブ ===== */
+@media screen and (max-width: 480px) {
+  .answer-box input {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  .answer-box button {
+    width: 80%;
+    margin: 10px 0 0 0;
+    font-size: 14px;
+  }
+
+  .popup-content img {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .correct-text {
+    font-size: 1.8rem; /* 小さめに調整 */
+    top: 3%;           /* 上端にさらに寄せる */
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
 }
