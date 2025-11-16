@@ -98,7 +98,7 @@ h2 {
 /* 画像上部に重ねる文字（白＋黄色縁取り） */
 .correct-text {
   position: absolute;
-  top: 10%;          /* 画像上端から10%下 */
+  top: 5%;          /* 画像上端から5%下 */
   left: 50%;
   transform: translateX(-50%);
   font-size: 2.2rem;
