@@ -47,9 +47,9 @@ h2 {
 /* 見出し画像 */
 .title-image img {
   width: 50%;         /* 画像の幅調整 */
-  max-width: 75px;   /* 最大幅 */
+  max-width: 150px;   /* 最大幅 */
   display: block;
-  margin: 0 auto 15px auto;  /* 上下の余白、中央寄せ */
+  margin: 0 0 15px 0; /* 上0 下15px 左0 右0 で左寄せ */
 }
 
 /* 謎画像 */
