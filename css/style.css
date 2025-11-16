@@ -95,16 +95,24 @@ h2 {
   display: block;
 }
 
-/* 画像上に重ねる文字 */
+/* 画像上部に重ねる文字（白＋黄色縁取り） */
 .correct-text {
   position: absolute;
-  top: 50%;       /* 画像中央 */
+  top: 10%;          /* 画像上端から10%下 */
   left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 2.5rem;
-  color: #ffffff; /* 白文字 */
+  transform: translateX(-50%);
+  font-size: 2.2rem;
+  color: #ffffff;    /* 文字色は白 */
   font-weight: bold;
-  text-shadow: 0 0 8px rgba(0,0,0,0.7);
+
+  /* 黄色縁取り */
+  text-shadow:
+     -2px -2px 0 #ffff00,
+      2px -2px 0 #ffff00,
+     -2px  2px 0 #ffff00,
+      2px  2px 0 #ffff00,
+      0   0   4px #ffff00;
+
   opacity: 0;
   animation: fadeInText 0.5s ease forwards;
 }
