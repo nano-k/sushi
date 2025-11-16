@@ -1,4 +1,4 @@
-/* 全体レイアウト */
+/* ===== 全体レイアウト ===== */
 body {
   font-family: "Yu Gothic", sans-serif;
   background: #f8f8f8;
@@ -57,7 +57,7 @@ h2 {
   font-weight: bold;
 }
 
-/* ポップアップ背景 */
+/* ===== ポップアップ ===== */
 .popup {
   position: fixed;
   top: 0;
@@ -66,8 +66,10 @@ h2 {
   height: 100%;
   background: rgba(0,0,0,0.6);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;     /* 縦中央 */
+  justify-content: center; /* 横中央 */
+  padding: 10px;
+  box-sizing: border-box;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.3s ease;
@@ -84,8 +86,10 @@ h2 {
 
 /* ポップアップ内容 */
 .popup-content {
-  position: relative;
+  position: relative; /* 文字を重ねる基準 */
   display: inline-block;
+  max-width: 100%;
+  text-align: center;
 }
 
 .popup-content img {
@@ -93,23 +97,18 @@ h2 {
   max-width: 400px;
   border-radius: 8px;
   display: block;
+  margin: 0 auto;
 }
 
-/* 画像上部に重ねる文字 */
+/* 画像上部に重ねる文字（白文字のみ） */
 .correct-text {
   position: absolute;
-  top: 5%; 
+  top: 5%;          /* 上端付近 */
   left: 50%;
   transform: translateX(-50%);
   font-size: 2.2rem;
-  color: #ffffff;
+  color: #ffffff;    /* 白文字 */
   font-weight: bold;
-  text-shadow:
-     -2px -2px 0 #ffff00,
-      2px -2px 0 #ffff00,
-     -2px  2px 0 #ffff00,
-      2px  2px 0 #ffff00,
-      0   0   4px #ffff00;
   opacity: 0;
   animation: fadeInText 0.5s ease forwards;
 }
@@ -156,7 +155,7 @@ h2 {
   }
 
   .correct-text {
-    font-size: 1.8rem; /* 小さめに調整 */
+    font-size: 1.8rem; /* 小さめ */
     top: 3%;           /* 上端にさらに寄せる */
   }
 
