@@ -46,3 +46,12 @@ function showCorrectPopup(nextPage){
     window.location.href = nextPage;
   }, 1500);
 }
+
+// ページ読み込み時にポップアップを非表示に
+window.addEventListener("pageshow", function(event) {
+  const popup = document.getElementById("popup");
+  if (popup) {
+    popup.classList.remove("show");
+    popup.classList.add("hidden");
+  }
+});
