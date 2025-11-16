@@ -1,4 +1,12 @@
-{
-  "answer": ["いか", "イカ", "たこ", "タコ"],
-  "next": "q4.html"
-}
+[
+  {
+    "answer": ["いか", "イカ"],
+    "next": "q4.html",
+    "image": "img/q3_correct_ika.png"
+  },
+  {
+    "answer": ["たこ", "タコ"],
+    "next": "q4.html",
+    "image": "img/q3_correct_tako.png"
+  }
+]
