@@ -1,77 +1,121 @@
-<!-- style.css -->
+/* 全体レイアウト */
 body {
-font-family: sans-serif;
-padding: 20px;
-background: #f7f7f7;
-}
-.btn {
-display: inline-block;
-margin-top: 20px;
-padding: 10px 20px;
-background: #0078ff;
-color: #fff;
-border-radius: 6px;
-text-decoration: none;
-}
-input {
-padding: 8px;
-width: 200px;
-margin-top: 10px;
+  font-family: "Yu Gothic", sans-serif;
+  background: #f8f8f8;
+  padding: 20px;
+  text-align: center;
 }
 
-
-/* ポップアップ */
-.popup_hidden {
-display: none;
-}
-#popup {
-position: fixed;
-top: 0;
-left: 0;
-width: 100vw;
-height: 100vh;
-background: rgba(0, 0, 0, 0.5);
-display: flex;
-align-items: center;
-justify-content: center;
-}
-.popup_inner {
-background: white;
-padding: 20px;
-border-radius: 10px;
-text-align: center;
-animation: fadein 0.6s ease;
-}
-.popup_text {
-font-size: 24px;
-font-weight: bold;
-margin-bottom: 10px;
-}
-@keyframes fadein {
-from { opacity: 0; transform: scale(0.7); }
-to { opacity: 1; transform: scale(1); }
+h2 {
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
-
-/* check.js */
-const answers = {
-q1: "APPLE", // 小謎1
-q2: "DOG", // 小謎2
-q3: "STAR", // 小謎3
-q4: "BLUE",
-q5: "CAT",
-q6: "GREEN",
-q7: "MOON"
-};
-
-
-function checkAnswer(id) {
-const input = document.getElementById("answer").value.trim().toUpperCase();
-
-
-if (input === answers[id]) {
-$("#popup").fadeIn(300);
-} else {
-alert("不正解です。もう一度試してね。");
+/* 謎画像 */
+.puzzle-image img {
+  width: 90%;
+  max-width: 600px;
+  display: block;
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
+
+/* 解答ボックス */
+.answer-box {
+  margin-top: 20px;
+}
+
+.answer-box input {
+  width: 60%;
+  max-width: 260px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.answer-box button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  background: #0078ff;
+  color: white;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.answer-box button:hover {
+  background: #005fcc;
+}
+
+/* ポップアップ背景 */
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  opacity: 0;
+  pointer-events: none;
+
+  transition: opacity 0.5s ease;
+}
+
+/* 表示状態 */
+.popup.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ポップアップ内容 */
+.popup-content {
+  background: transparent;
+  text-align: center;
+  animation: fadeInPopup 0.6s ease forwards;
+}
+
+.popup-content img {
+  width: 80%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+/* 「正解！」文字 */
+.correct-text {
+  font-size: 2.2rem;
+  color: #ffffff;
+  margin-top: 10px;
+  text-shadow: 0 0 10px rgba(255,255,255,0.8);
+  font-weight: bold;
+  animation: fadeInText 1s ease forwards;
+}
+
+/* フェードインアニメーション */
+@keyframes fadeInPopup {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInText {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
