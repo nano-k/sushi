@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>4貫目</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/answercheck.js"></script>
+</head>
+<body>
+  <div class="container">
+
+<h2>4貫目</h2>
+<p class="left-text">「もう一つのネタは、また別の機会に［注文］してくださいね」</p>
+<p class="left-text">たこも美味しかったが、次に来るときはいかを頼むのもいいだろう。最も無事にこの寿司屋から脱出できればの話だが。</p>
+<p class="left-text">そんなことを考えていると４貫目の謎が差し出された。。</p>
+
+<!-- 一貫目の見出し画像 -->
+<div class="title-image">
+  <img src="img/yonnkannme.png" alt="4貫目">
+</div>
+
+<!-- 謎画像 -->
+<div class="puzzle-image">
+  <img src="img/q4_puzzle.png" alt="4貫目">
+</div>
+
+<!-- 解答フォーム -->
+<form name="q4" onsubmit="AnswerCheck(this); return false;">
+  <div class="answer-box">
+    <input type="text" name="answer" placeholder="答えを入力" autocomplete="off">
+    <button type="submit">［注文］する</button>
+  </div>
+  <div class="result"></div>
+</form>
+
+<!-- 正解ポップアップ -->
+<div id="popup" class="popup hidden">
+  <div class="popup-content">
+    <img id="popupImage" src="img/q4_correct.png" alt="正解！">
+    <p class="correct-text">正解！</p>
+  </div>
+</div>
+</div>
+</body>
+</html>
