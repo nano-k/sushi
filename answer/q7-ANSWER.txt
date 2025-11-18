@@ -1,0 +1,4 @@
+{
+  "answer": ["ootoro", "いくら", "イクラ"],
+  "next": "q7.html"
+}
