@@ -1,4 +1,4 @@
 {
   "answer": ["ootoro", "大トロ", "おおとろ", "オオトロ"],
-  "next": "q6.html"
+  "next": "q7.html"
 }
