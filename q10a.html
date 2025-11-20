@@ -29,6 +29,33 @@
   <button id="turnoverButton">裏返す</button>
 </a>
 
+ <!-- 謎画像 -->
+<div class="puzzle-image">
+  <img src="img/q10_puzzle.png" alt="最終貫">
+</div>
+
+
+
+<!-- 謎画像 -->
+<div class="puzzle-image">
+  <img src="img/q8_puzzle.png" alt="8貫目">
+</div>
+
+<!-- 解答フォーム -->
+<form name="q8" onsubmit="AnswerCheck(this); return false;">
+  <div class="answer-box">
+    <input type="text" name="answer" placeholder="答えを入力" autocomplete="off">
+    <button type="submit">［注文］する</button>
+  </div>
+  <div class="result"></div>
+</form>
+
+<!-- 正解ポップアップ -->
+<div id="popup" class="popup hidden">
+  <div class="popup-content">
+    <img id="popupImage" src="img/q8_correct.png" alt="正解！">
+    <p class="correct-text">正解！</p>
+  </div>
 
 
 </body>
