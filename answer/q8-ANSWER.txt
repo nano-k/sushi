@@ -1,4 +1,4 @@
 {
   "answer": [ "ぎょく", "ギョク", "玉"],
-  "next": "q8.html"
+  "next": "q9.html"
 }
