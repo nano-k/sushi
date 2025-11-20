@@ -252,8 +252,6 @@ h2 {
   cursor: grab;
   font-size: 2rem;
   user-select: none;
-  
-  /* 掴みやすくするための背景と余白 */
   background: #ffffff;
   padding: 8px 14px;
   border-radius: 8px;
@@ -265,6 +263,7 @@ h2 {
   cursor: grabbing;
   opacity: 0.9;
 }
+
 
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
