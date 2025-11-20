@@ -208,12 +208,24 @@ h2 {
   width: 100%;
   max-width: 600px;
   height: auto;
-  display: block;
+  display: none;          /* デフォルト非表示 */
   margin: 0 auto;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-  cursor: pointer; /* タップ可能に見せる */
 }
+
+#toggleButton {
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 
 
 /* ===== スマホ版レスポンシブ ===== */
