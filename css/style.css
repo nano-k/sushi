@@ -228,7 +228,9 @@ h2 {
   font-weight: 600;
 }
 
-/* 寿司皿 */
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+   寿司皿（配置エリア）
+   ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .plate-container {
   position: relative;
   width: 300px;
@@ -241,16 +243,53 @@ h2 {
   height: auto;
 }
 
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+   ドラッグ可能文字（あ / がり）
+   ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .draggable {
   position: absolute;
   cursor: grab;
   font-size: 2rem;
   user-select: none;
-  background: #fff7;
-  padding: 5px 10px;
-  border-radius: 6px;
+  
+  /* 掴みやすくするための背景と余白 */
+  background: #ffffff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
 
+.draggable:active {
+  cursor: grabbing;
+  opacity: 0.9;
+}
+
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+   初期位置：中央に2つを並べて配置
+   ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+#charA,
+#charG {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* A と G を少し左右にずらす */
+#charA {
+  transform: translate(-80%, -50%);
+}
+
+#charG {
+  transform: translate(-20%, -50%);
+}
+
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+   判定結果表示
+   ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .result {
   margin-top: 20px;
   font-size: 1.5rem;
@@ -258,23 +297,7 @@ h2 {
   color: #d33;
 }
 
-/* 初期位置：中央に配置 */
-#charA,
-#charG {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
-/* AとGが完全に重ならないように微調整 */
-#charA {
-  transform: translate(-80%, -50%); /* 少し左 */
-}
-
-#charG {
-  transform: translate(-20%, -50%); /* 少し右 */
-}
 
 
 /* ===== スマホ版レスポンシブ ===== */
