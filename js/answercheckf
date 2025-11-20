@@ -1,0 +1,46 @@
+function AnswerCheck(form) {
+  const answer = form.answer.value.trim(); // 入力値
+  const resultBox = form.querySelector(".result");
+
+  // 問題ごとの正解を設定
+  const correctAnswers = {
+    q1a: "ひらめ",
+    q2a: "答え2",
+    q3a: "答え3",
+    q4a: "答え4",
+    q5a: "答え5",
+    q6a: "答え6",
+    q7a: "答え7",
+    q8a: "答え8",
+    q9a: "答え9"
+  };
+
+  // 正解画像パス
+  const correctImages = {
+    q1a: "img/q1a_correct.png",
+    q2a: "img/q2a_correct.png",
+    q3a: "img/q3a_correct.png",
+    q4a: "img/q4a_correct.png",
+    q5a: "img/q5a_correct.png",
+    q6a: "img/q6a_correct.png",
+    q7a: "img/q7a_correct.png",
+    q8a: "img/q8_correct.png",
+    q9a: "img/q9a_correct.png"
+  };
+
+  // 正解判定
+  if (answer === correctAnswers[form.name]) {
+    // 画像を切り替えてポップアップ表示
+    document.getElementById("popupImage").src = correctImages[form.name];
+    document.getElementById("popup").classList.remove("hidden");
+
+    resultBox.textContent = ""; // 不正解メッセージクリア
+  } else {
+    resultBox.textContent = "不正解";
+  }
+}
+
+// ポップアップをクリックで閉じる
+document.getElementById("popup").addEventListener("click", function() {
+  this.classList.add("hidden");
+});
