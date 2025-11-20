@@ -204,18 +204,20 @@ h2 {
   cursor: pointer;
 }
 
-.puzzle-image img {
+/* 切り替え画像 */
+.toggle-image-container img {
   width: 100%;
   max-width: 600px;
   height: auto;
-  display: none;          /* デフォルト非表示 */
-  margin: 0 auto;
+  display: none;
+  margin: 10px auto;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
 }
 
+/* ボタン */
 #toggleButton {
-  margin-top: 20px;
+  margin: 10px auto 20px;
   padding: 10px 24px;
   background: #333;
   color: #fff;
