@@ -33,6 +33,21 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleImg = document.getElementById("toggleImage");
+  const toggleBtn = document.getElementById("toggleButton");
+
+  if(toggleImg && toggleBtn){
+    toggleBtn.addEventListener("click", () => {
+      if(toggleImg.style.display === "none"){
+        toggleImg.style.display = "block";
+      } else {
+        toggleImg.style.display = "none";
+      }
+    });
+  }
+});
+
 
 // ブラウザバック時のポップアップ非表示
 window.addEventListener("pageshow", function () {
