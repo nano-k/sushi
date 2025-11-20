@@ -228,6 +228,19 @@ h2 {
   font-weight: 600;
 }
 
+/* ボタン */
+#turnoverButton {
+  margin: 10px auto 20px;
+  padding: 10px 24px;
+  background: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
    寿司皿（配置エリア）
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
