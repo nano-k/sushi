@@ -76,6 +76,26 @@ function checkPlacement() {
 
   if(isOnPlate(charA) && isOnPlate(charG)){
     document.querySelector('.result').textContent = "クリア！ あ + がり = あがり";
+
+// ---- スマホ操作 ----
+    const drag = document.getElementById("charA");
+
+drag.addEventListener("touchstart", startDrag, { passive: false });
+drag.addEventListener("touchmove", onDrag, { passive: false });
+drag.addEventListener("touchend", endDrag);
+
+function startDrag(e) {
+  e.preventDefault(); // これが超重要
+  // タッチ開始処理
+}
+
+function onDrag(e) {
+  e.preventDefault(); // スクロール防止
+  const touch = e.touches[0];
+  drag.style.left = touch.pageX + "px";
+  drag.style.top  = touch.pageY + "px";
+}
+
   } else {
     document.querySelector('.result').textContent = "";
   }
