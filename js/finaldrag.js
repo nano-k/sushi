@@ -75,7 +75,7 @@ function checkPlacement() {
   // 左右と上下の余白を個別に設定
   const marginLeft   = 40;
   const marginRight  = 40;
-  const marginTop    = 35;
+  const marginTop    = 40;
   const marginBottom = 77;
 
   // 文字の位置を皿基準に変換
