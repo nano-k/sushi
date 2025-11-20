@@ -6,7 +6,7 @@
   },
   {
     "answer": ["あ"],
-    "next": "q10r.html",
-    "image": "img/q6_correct.png"
+    "next": "q10b.html",
+    "image": "img/a_correct.png"
   }
 ]
