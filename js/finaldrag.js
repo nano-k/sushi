@@ -2,17 +2,15 @@
 // 変数定義
 // ===============================
 let currentDrag = null; // 現在ドラッグ中の要素
-let shiftX = 0;         // カーソルと要素左上の水平差
-let shiftY = 0;         // カーソルと要素左上の垂直差
 
 // ===============================
-// カーソル（またはタッチ）の座標を取得
+// カーソル（またはタッチ）の座標取得
 // ===============================
 function getCursorPosition(event) {
-  if (event.touches) { // スマホの場合
+  if (event.touches) {
     return { x: event.touches[0].pageX, y: event.touches[0].pageY };
   }
-  return { x: event.pageX, y: event.pageY }; // PC
+  return { x: event.pageX, y: event.pageY };
 }
 
 // ===============================
@@ -27,20 +25,18 @@ document.querySelectorAll(".draggable").forEach(elem => {
 // ドラッグ開始処理
 // ===============================
 function dragStart(e) {
-  e.preventDefault(); // スクロールや選択を防止
+  e.preventDefault();
+
+  // 現在ドラッグ中の要素にセット
   currentDrag = e.currentTarget;
 
-  const cursor = getCursorPosition(e);
-  const rect = currentDrag.getBoundingClientRect();
+  // ズレなしで左上基準で動かす
+  // クリック位置に関係なく動かせる
+  currentDrag.style.position = "absolute";
 
-  // カーソルと要素の左上の差を保持（ドラッグ中にズレないように）
-  shiftX = cursor.x - rect.left;
-  shiftY = cursor.y - rect.top;
-
-  // PC用イベント
+  // ドラッグ中のイベント登録
   document.addEventListener("mousemove", dragging);
   document.addEventListener("mouseup", dragEnd);
-  // スマホ用イベント
   document.addEventListener("touchmove", dragging, { passive: false });
   document.addEventListener("touchend", dragEnd);
 }
@@ -50,13 +46,13 @@ function dragStart(e) {
 // ===============================
 function dragging(e) {
   if (!currentDrag) return;
-  e.preventDefault(); // スクロールやズーム防止
+  e.preventDefault();
 
   const cursor = getCursorPosition(e);
 
-  // ドラッグ要素の左上を更新
-  currentDrag.style.left = cursor.x - shiftX + "px";
-  currentDrag.style.top  = cursor.y - shiftY + "px";
+  // 左上に要素を合わせる（ドラッグしていないと動かせない仕様）
+  currentDrag.style.left = cursor.x + "px";
+  currentDrag.style.top  = cursor.y + "px";
 }
 
 // ===============================
@@ -68,7 +64,7 @@ function dragEnd() {
   document.removeEventListener("touchmove", dragging);
   document.removeEventListener("touchend", dragEnd);
 
-  checkPlacement(); // 当たり判定
+  checkPlacement(); // 皿判定
   currentDrag = null;
 }
 
@@ -83,10 +79,8 @@ function checkPlacement() {
   const charG = document.getElementById('charG').getBoundingClientRect();
 
   function isOnPlate(charRect) {
-    const margin = 5; // 端ギリギリ防止の余白
-
-    // 画像中央部分（60%）を当たり判定領域にする
-    const hitWidth  = charRect.width * 0.6;
+    const margin = 5; // 端ギリギリ防止
+    const hitWidth = charRect.width * 0.6;  // 中央60%
     const hitHeight = charRect.height * 0.6;
 
     const left   = charRect.left + (charRect.width - hitWidth)/2 - plateRect.left;
@@ -94,7 +88,6 @@ function checkPlacement() {
     const top    = charRect.top + (charRect.height - hitHeight)/2 - plateRect.top;
     const bottom = top + hitHeight;
 
-    // 中央部分が皿内に収まっているか
     return left >= margin &&
            right <= plateRect.width - margin &&
            top >= margin &&
@@ -109,13 +102,12 @@ function checkPlacement() {
 }
 
 // ===============================
-// 初期配置（中央横並び）
+// 初期配置（皿中央に横並び）
 // ===============================
 window.addEventListener("load", () => {
   const wrapper = document.querySelector(".draggable-wrapper");
   const container = document.querySelector(".plate-container");
 
-  // plate-container の中央に横並びで配置
   const rect = container.getBoundingClientRect();
   wrapper.style.position = "absolute";
   wrapper.style.left = rect.width / 2 + "px";
