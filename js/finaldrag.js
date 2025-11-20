@@ -68,18 +68,28 @@ function checkPlacement() {
   const charA = document.getElementById('charA').getBoundingClientRect();
   const charG = document.getElementById('charG').getBoundingClientRect();
 
-  function isOnPlate(charRect) {
-    const margin = 50; // 端ギリギリ防止の余白
-    const left   = charRect.left - plateRect.left;
-    const right  = left + charRect.width;
-    const top    = charRect.top - plateRect.top;
-    const bottom = top + charRect.height;
+ function isOnPlate(charRect) {
+  // 皿の位置とサイズ
+  const plateRect = document.querySelector('.plate').getBoundingClientRect();
 
-    return left >= margin &&
-           right <= plateRect.width - margin &&
-           top >= margin &&
-           bottom <= plateRect.height - margin;
-  }
+  // 左右と上下の余白を個別に設定
+  const marginLeft   = 40;
+  const marginRight  = 40;
+  const marginTop    = 40;
+  const marginBottom = 60;
+
+  // 文字の位置を皿基準に変換
+  const left   = charRect.left - plateRect.left;
+  const right  = left + charRect.width;
+  const top    = charRect.top - plateRect.top;
+  const bottom = top + charRect.height;
+
+  // 判定
+  return left >= marginLeft &&
+         right <= plateRect.width - marginRight &&
+         top >= marginTop &&
+         bottom <= plateRect.height - marginBottom;
+}
 
   if(isOnPlate(charA) && isOnPlate(charG)){
     document.querySelector('.result').textContent = "クリア！ あ + がり = あがり";
