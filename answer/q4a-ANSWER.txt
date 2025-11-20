@@ -7,6 +7,6 @@
 {
     "answer": ["たこ", "タコ"],
     "next": "q10r.html",
-    "image": "img/q3_correct_tako.png"
+    "image": "img/q4_correct_tako.png"
   },
 ]
