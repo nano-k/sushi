@@ -1,6 +1,0 @@
-{
-  "correctA": "5貫目",
-  "correctB": "あ",
-  "correctC": "り",
-  "next": "q9a.html",
-}
