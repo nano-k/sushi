@@ -1,5 +1,7 @@
-{
-  "answer": ["あかみ", "アカミ", "赤身"],
-  "next": "q10r.html"
- "image": "img/q4_correct.png"
-}
+[
+  {
+    "answer": ["あかみ", "アカミ", "赤身"],
+    "next": "q10r.html",
+    "image": "img/q4_correct.png"
+  }
+]
