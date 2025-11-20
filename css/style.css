@@ -278,7 +278,7 @@ h2 {
 
 /* A と G を少し左右にずらす */
 #charA {
-  transform: translate(-90%, -50%);
+  transform: translate(-200%, -50%);
 }
 
 #charG {
