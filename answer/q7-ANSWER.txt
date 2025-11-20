@@ -1,4 +1,4 @@
 {
-  "answer": ["ootoro", "いくら", "イクラ"],
+  "answer": [ "いくら", "イクラ"],
   "next": "q8.html"
 }
