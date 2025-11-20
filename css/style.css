@@ -258,6 +258,25 @@ h2 {
   color: #d33;
 }
 
+/* 初期位置：中央に配置 */
+#charA,
+#charG {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* AとGが完全に重ならないように微調整 */
+#charA {
+  transform: translate(-80%, -50%); /* 少し左 */
+}
+
+#charG {
+  transform: translate(-20%, -50%); /* 少し右 */
+}
+
+
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
   .answer-box input {
