@@ -49,6 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 
+
 // ブラウザバック時のポップアップ非表示
 window.addEventListener("pageshow", function () {
   const popup = document.getElementById("popup");
