@@ -11,7 +11,7 @@ function checkSelectAnswer() {
   const resultArea = document.getElementById("selectResult");
 
   if (selA === correctA && selB === correctB && selC === correctC) {
-    window.location.href = "q10.html";
+    window.location.href = "q9a.html";
   } else {
     resultArea.textContent = "何かが違うようだ…";
   }
