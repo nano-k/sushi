@@ -2,51 +2,46 @@ let currentDrag = null;
 let shiftX = 0;
 let shiftY = 0;
 
-// 要素からカーソルのズレを取る（もっと正確な版）
 function getCursorPosition(event) {
   if (event.touches) {
-    return {
-      x: event.touches[0].pageX,
-      y: event.touches[0].pageY
-    };
+    return { x: event.touches[0].pageX, y: event.touches[0].pageY };
   }
-  return {
-    x: event.pageX,
-    y: event.pageY
-  };
+  return { x: event.pageX, y: event.pageY };
 }
 
+// ドラッグイベントを初期化（PCとスマホ共通）
 document.querySelectorAll(".draggable").forEach(elem => {
+  // PC
   elem.addEventListener("mousedown", dragStart);
-  elem.addEventListener("touchstart", dragStart);
+  // スマホ
+  elem.addEventListener("touchstart", dragStart, { passive: false });
 });
 
 function dragStart(e) {
   e.preventDefault();
+  currentDrag = e.currentTarget;
 
-  currentDrag = e.target;
   const cursor = getCursorPosition(e);
+  const rect = currentDrag.getBoundingClientRect();
 
-  // 要素の左上座標との差分（これを保持するとズレなくなる）
-  shiftX = cursor.x - currentDrag.offsetLeft;
-  shiftY = cursor.y - currentDrag.offsetTop;
+  shiftX = cursor.x - rect.left;
+  shiftY = cursor.y - rect.top;
 
+  // PC
   document.addEventListener("mousemove", dragging);
   document.addEventListener("mouseup", dragEnd);
-
-  document.addEventListener("touchmove", dragging);
+  // スマホ
+  document.addEventListener("touchmove", dragging, { passive: false });
   document.addEventListener("touchend", dragEnd);
 }
 
 function dragging(e) {
   if (!currentDrag) return;
   e.preventDefault();
-
   const cursor = getCursorPosition(e);
 
-  // 左上に持ってくる、ズレゼロ
   currentDrag.style.left = cursor.x - shiftX + "px";
-  currentDrag.style.top = cursor.y - shiftY + "px";
+  currentDrag.style.top  = cursor.y - shiftY + "px";
 }
 
 function dragEnd() {
@@ -59,8 +54,7 @@ function dragEnd() {
   currentDrag = null;
 }
 
-
-// 厳しめ判定（文字全体が皿内に収まるか）
+// 厳しめ判定
 function checkPlacement() {
   const plate = document.querySelector('.plate');
   const plateRect = plate.getBoundingClientRect();
@@ -69,7 +63,7 @@ function checkPlacement() {
   const charG = document.getElementById('charG').getBoundingClientRect();
 
   function isOnPlate(charRect) {
-    const margin = 5; // 端ギリギリ防止の余白
+    const margin = 5;
     const left   = charRect.left - plateRect.left;
     const right  = left + charRect.width;
     const top    = charRect.top - plateRect.top;
@@ -81,28 +75,8 @@ function checkPlacement() {
            bottom <= plateRect.height - margin;
   }
 
-  if(isOnPlate(charA) && isOnPlate(charG)){
+  if (isOnPlate(charA) && isOnPlate(charG)) {
     document.querySelector('.result').textContent = "クリア！ あ + がり = あがり";
-
-// ---- スマホ操作 ----
-    const drag = document.getElementById("charA");
-
-drag.addEventListener("touchstart", startDrag, { passive: false });
-drag.addEventListener("touchmove", onDrag, { passive: false });
-drag.addEventListener("touchend", endDrag);
-
-function startDrag(e) {
-  e.preventDefault(); // これが超重要
-  // タッチ開始処理
-}
-
-function onDrag(e) {
-  e.preventDefault(); // スクロール防止
-  const touch = e.touches[0];
-  drag.style.left = touch.pageX + "px";
-  drag.style.top  = touch.pageY + "px";
-}
-
   } else {
     document.querySelector('.result').textContent = "";
   }
