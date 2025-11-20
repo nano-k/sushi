@@ -76,7 +76,7 @@ function checkPlacement() {
   const marginLeft   = 40;
   const marginRight  = 40;
   const marginTop    = 35;
-  const marginBottom = 80;
+  const marginBottom = 77;
 
   // 文字の位置を皿基準に変換
   const left   = charRect.left - plateRect.left;
