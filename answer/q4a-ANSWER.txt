@@ -4,13 +4,13 @@
   "next": "q10r.html"
  "image": "img/q2_correct.png",
 
-}
+},
 {
   "answer": ["あ"],
   "next": "q10b.html"
  "image": "img/a_correct.png",
 
-}
+},
 {
   "answer": ["み"],
   "next": "q10r.html"
