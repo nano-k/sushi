@@ -1,0 +1,4 @@
+{
+  "answer": [ "かっぱ", "カッパ", "kappa", "KAPPA"],
+  "next": "q10.html"
+}
