@@ -177,6 +177,18 @@ h2 {
   background: #005fcc;
 }
 
+.inline-select {
+  font-size: 1em;
+  padding: 2px;
+  margin: 0 2px;
+}
+
+#selectResult {
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
   .answer-box input {
