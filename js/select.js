@@ -17,6 +17,17 @@ function checkSelectAnswer() {
   }
 }
 
+// 画像タップで表示/非表示
+const toggleImg = document.getElementById("toggleImage");
+if(toggleImg){
+  toggleImg.addEventListener("click", () => {
+    if(toggleImg.style.display === "none"){
+      toggleImg.style.display = "block";
+    } else {
+      toggleImg.style.display = "none";
+    }
+  });
+}
 
 // ブラウザバック時のポップアップ非表示
 window.addEventListener("pageshow", function () {
