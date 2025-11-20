@@ -3,9 +3,9 @@
     "answer": ["あかみ", "アカミ", "赤身"],
     "next": "q10r.html",
     "image": "img/q4_correct.png"
-  }
+  },
   {
-    "answer": ["あ", "か", "み"],
+    "answer": ["あ"],
     "next": "q10r.html",
     "image": "img/q6_correct.png"
   }
