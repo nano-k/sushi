@@ -44,6 +44,21 @@ function dragEnd(e) {
   checkPlacement();
   currentDrag = null;
 }
+window.onload = () => {
+  const a = document.getElementById('charA');
+  const g = document.getElementById('charG');
+  
+  const centerX = window.innerWidth / 2;
+  const centerY = window.innerHeight / 2;
+
+  // Aを中央より少し左
+  a.style.left = (centerX - 60) + "px";
+  a.style.top  = centerY + "px";
+
+  // がりを中央より少し右
+  g.style.left = (centerX + 20) + "px";
+  g.style.top  = centerY + "px";
+};
 
 // 皿上に文字が揃ったらクリア
 function checkPlacement() {
