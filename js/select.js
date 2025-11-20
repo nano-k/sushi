@@ -18,16 +18,21 @@ function checkSelectAnswer() {
 }
 
 // 画像タップで表示/非表示
-const toggleImg = document.getElementById("toggleImage");
-if(toggleImg){
-  toggleImg.addEventListener("click", () => {
-    if(toggleImg.style.display === "none"){
-      toggleImg.style.display = "block";
-    } else {
-      toggleImg.style.display = "none";
-    }
-  });
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const toggleImg = document.getElementById("toggleImage");
+  if(toggleImg){
+    toggleImg.addEventListener("click", () => {
+      // 現在の display をチェックして切り替え
+      const currentDisplay = window.getComputedStyle(toggleImg).display;
+      if(currentDisplay !== "none"){
+        toggleImg.style.display = "none";
+      } else {
+        toggleImg.style.display = "block";
+      }
+    });
+  }
+});
+
 
 // ブラウザバック時のポップアップ非表示
 window.addEventListener("pageshow", function () {
