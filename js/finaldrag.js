@@ -69,7 +69,7 @@ function checkPlacement() {
   const charG = document.getElementById('charG').getBoundingClientRect();
 
   function isOnPlate(charRect) {
-    const margin = 5; // 端ギリギリ防止の余白
+    const margin = 20; // 端ギリギリ防止の余白
     const left   = charRect.left - plateRect.left;
     const right  = left + charRect.width;
     const top    = charRect.top - plateRect.top;
