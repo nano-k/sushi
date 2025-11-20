@@ -1,3 +1,4 @@
+[
 {
   "answer": ["いくら", "イクラ"],
   "image": "img/q7_correct.png",
