@@ -1,12 +1,6 @@
-[
-  {
-    "answer": ["いか", "イカ"],
-    "next": "q10r.html",
-    "image": "img/q3_correct_ika.png"
-  },
-  {
-    "answer": ["たこ", "タコ"],
-    "next": "q10r.html",
-    "image": "img/q3_correct_tako.png"
-  }
-]
+{
+  "answer": ["あかみ", "アカミ", "赤身"],
+  "next": "q10r.html"
+ "image": "img/q4_correct.png",
+
+}
