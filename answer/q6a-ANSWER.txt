@@ -1,4 +1,5 @@
 {
   "answer": ["あかがい", "アカガイ", "赤貝", "akagai"],
-  "next": "q6.html"
+  "image": "img/q6_correct.png",
+    "next": "q10r.html"
 }
