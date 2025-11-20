@@ -191,30 +191,20 @@ h2 {
 
 #selectSubmit {
   margin-top: 20px;
-  padding: 14px 32px;
+  padding: 10px 24px;      /* 少し細め */
+  background: #333;         /* ダークグレー */
+  color: #fff;              /* 白文字 */
+  border: none;
+  border-radius: 8px;       /* 軽い丸み */
 
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(6px);
-
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 14px;
-
-  font-size: 1.15rem;
-  font-weight: 700;
+  font-size: 1rem;          /* 少し小さめ */
+  font-weight: 600;         /* 細めの強調 */
+  letter-spacing: 0.5px;
 
   cursor: pointer;
-  transition: 0.25s ease;
+  box-shadow: 0 3px 6px rgba(0,0,0,0.2); /* 軽い立体感 */
 }
 
-#selectSubmit:hover {
-  background: rgba(255,255,255,0.25);
-  transform: translateY(-3px);
-}
-
-#selectSubmit:active {
-  transform: translateY(1px);
-}
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
