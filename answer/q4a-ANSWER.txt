@@ -4,4 +4,9 @@
     "next": "q10r.html",
     "image": "img/q4_correct.png"
   }
+  {
+    "answer": ["あ", "か", "み"],
+    "next": "q10r.html",
+    "image": "img/q6_correct.png"
+  }
 ]
