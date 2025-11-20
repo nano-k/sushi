@@ -2,6 +2,5 @@
   "correctA": "5貫目",
   "correctB": "あ",
   "correctC": "り",
-  "next": "q10.html",
-  "image": "img/q9_correct.png"
+  "next": "q9a.html",
 }
