@@ -9,9 +9,9 @@
     "image": "img/q4a_correct.png",  // 正解時に表示する画像
     "next": "q2.html"         // 正解後に遷移するページ
   },
-{
-    "answer": "み",       // 正解文字（文字列）
-    "image": "img/q4ｍ_correct.png",  // 正解時に表示する画像
-    "next": "q2.html"         // 正解後に遷移するページ
+  {
+    "answer": ["たこ", "タコ"],
+    "next": "q10r.html",
+    "image": "img/q3_correct_tako.png"
   },
 ]
