@@ -1,4 +1,5 @@
 {
   "answer": [ "ぎょく", "ギョク", "玉"],
+  "image": "img/q7_correct.png",
   "next": "q10r.html"
 }
