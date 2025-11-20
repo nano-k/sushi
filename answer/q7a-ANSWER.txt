@@ -2,4 +2,10 @@
   "answer": ["いくら", "イクラ"],
   "image": "img/q7_correct.png",
   "next": "q10r.html"
-}
+},
+  {
+    "answer": ["がり"],
+    "next": "q10c.html",
+    "image": "img/gari_correct.png"
+  }
+]
