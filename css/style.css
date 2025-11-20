@@ -193,32 +193,28 @@ h2 {
   margin-top: 20px;
   padding: 14px 32px;
 
-  background: linear-gradient(135deg, #0078ff, #005fcc);
-  color: #fff;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(6px);
 
-  border: none;
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.3);
   border-radius: 14px;
 
   font-size: 1.15rem;
   font-weight: 700;
-  letter-spacing: 1px;
 
   cursor: pointer;
-  transition: transform 0.15s ease, box-shadow 0.2s ease;
-
-  box-shadow: 0 6px 14px rgba(0, 120, 255, 0.35);
+  transition: 0.25s ease;
 }
 
 #selectSubmit:hover {
+  background: rgba(255,255,255,0.25);
   transform: translateY(-3px);
-  box-shadow: 0 10px 20px rgba(0, 120, 255, 0.45);
 }
 
 #selectSubmit:active {
   transform: translateY(1px);
-  box-shadow: 0 4px 10px rgba(0, 120, 255, 0.25);
 }
-
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
