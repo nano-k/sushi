@@ -107,6 +107,3 @@ function onDrag(e) {
     document.querySelector('.result').textContent = "";
   }
 }
-
-これの当たり判定はどこで調整する？
-現状緩すぎるので厳しくしたい
