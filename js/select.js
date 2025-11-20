@@ -19,34 +19,17 @@ function checkSelectAnswer() {
 
 // 画像タップで表示/非表示
 document.addEventListener("DOMContentLoaded", () => {
-  const toggleImg = document.getElementById("toggleImage");
-  if(toggleImg){
-    toggleImg.addEventListener("click", () => {
-      // 現在の display をチェックして切り替え
-      const currentDisplay = window.getComputedStyle(toggleImg).display;
-      if(currentDisplay !== "none"){
-        toggleImg.style.display = "none";
-      } else {
-        toggleImg.style.display = "block";
-      }
-    });
-  }
-});
-
-document.addEventListener("DOMContentLoaded", () => {
+  // 表示/非表示切り替え
   const toggleImg = document.getElementById("toggleImage");
   const toggleBtn = document.getElementById("toggleButton");
 
   if(toggleImg && toggleBtn){
     toggleBtn.addEventListener("click", () => {
-      if(toggleImg.style.display === "none"){
-        toggleImg.style.display = "block";
-      } else {
-        toggleImg.style.display = "none";
-      }
+      toggleImg.style.display = toggleImg.style.display === "none" ? "block" : "none";
     });
   }
 });
+
 
 
 
