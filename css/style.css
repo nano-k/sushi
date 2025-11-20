@@ -189,6 +189,33 @@ h2 {
   margin-top: 10px;
 }
 
+#selectSubmit {
+  margin-top: 20px;
+  padding: 12px 28px;
+
+  background: #e53935;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+
+  font-size: 1.2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  box-shadow: 0 4px 10px rgba(229, 57, 53, 0.35);
+  transition: all 0.2s ease;
+}
+
+#selectSubmit:hover {
+  background: #c62828;
+  transform: translateY(-2px);
+}
+
+#selectSubmit:active {
+  transform: translateY(1px);
+}
+
+
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
   .answer-box input {
