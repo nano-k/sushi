@@ -192,7 +192,7 @@ h2 {
 #selectSubmit {
   margin-top: 20px;
   padding: 10px 24px;      /* 少し細め */
-  background: #333;         /* ダークグレー */
+  background: #0078ff;         /**/
   color: #fff;              /* 白文字 */
   border: none;
   border-radius: 8px;       /* 軽い丸み */
@@ -219,7 +219,7 @@ h2 {
 #toggleButton {
   margin: 10px auto 20px;
   padding: 10px 24px;
-  background: #333;
+  background: #0078ff;
   color: #fff;
   border: none;
   border-radius: 8px;
