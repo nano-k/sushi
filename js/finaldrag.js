@@ -102,7 +102,7 @@ function checkPlacement() {
 
     // 2秒後にページ遷移
     setTimeout(() => {
-      window.location.href = "nextpage.html";
+      window.location.href = "clear.html";
     }, 2000);
 
   } else {
