@@ -6,7 +6,7 @@
 },
   {
     "answer": ["がり"],
-    "next": "q10c.html",
+    "next": "q10d.html",
     "image": "img/gari_correct.png"
   }
 ]
