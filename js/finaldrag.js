@@ -98,7 +98,7 @@ function checkPlacement() {
   if (isOnPlate(charA) && isOnPlate(charG)) {
     
     const result = document.querySelector('.result');
-    result.innerHTML = '<img src="img/q4_correct.png" class="clear-img">';
+    result.innerHTML = '<img src="img/agari_correct.png" class="clear-img">';
 
     // 2秒後にページ遷移
     setTimeout(() => {
