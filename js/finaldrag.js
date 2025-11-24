@@ -91,8 +91,20 @@ function checkPlacement() {
          bottom <= plateRect.height - marginBottom;
 }
 
-  if(isOnPlate(charA) && isOnPlate(charG)){
-    document.querySelector('.result').textContent = "クリア！ あ + がり = あがり";
+  if (isOnPlate(charA) && isOnPlate(charG)) {
+
+  // ① クリア画像を表示
+  const result = document.querySelector('.result');
+  result.innerHTML = '<img src="img/q4_correct.png" class="clear-img">';
+
+  // ② アニメーションしたければCSSで対応可能
+
+  // ③ 2秒後にページ遷移
+  setTimeout(() => {
+    window.location.href = "nextpage.html"; // ← 遷移先に変更
+  }, 2000);
+}
+
 
 // ---- スマホ操作 ----
     const drag = document.getElementById("charA");
