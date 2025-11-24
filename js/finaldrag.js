@@ -117,3 +117,33 @@ function onDrag(e) {
     document.querySelector('.result').textContent = "";
   }
 }
+
+
+function createCard(text) {
+  const card = document.createElement("div");
+  card.className = "draggable";
+  card.textContent = text;
+
+  // ★ 文字数で形を変える
+  if (text.length === 1) {
+    // 1文字 → 正方形
+    card.style.width = "80px";
+    card.style.height = "80px";
+  } else if (text.length >= 2 && text.length <= 3) {
+    // 2〜3文字 → 横長
+    card.style.height = "80px";
+    card.style.width = (text.length * 60) + "px";  
+    // 例：
+    // 2文字→120px
+    // 3文字→180px
+  } else {
+    // 4文字以上 → 自動調整（必要なら変更）
+    card.style.height = "80px";
+    card.style.width = (text.length * 50) + "px";
+  }
+
+  document.body.appendChild(card);
+  return card;
+}
+
+
