@@ -1,0 +1,5 @@
+  {
+    "answer": ["ひらめ", "ヒラメ"],
+    "image": "img/q1_correct.png",
+    "next": "q10r2.html"
+  }
