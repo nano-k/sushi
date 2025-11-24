@@ -95,20 +95,40 @@ function checkPlacement() {
   }
 
   // ----- クリア判定 -----
-  if (isOnPlate(charA) && isOnPlate(charG)) {
-    
-    const result = document.querySelector('.result');
-    result.innerHTML = '<img src="img/q4_correct.png" class="clear-img">';
+if (isOnPlate(charA) && isOnPlate(charG)) {
 
-    // 2秒後にページ遷移
-    setTimeout(() => {
-      window.location.href = "nextpage.html";
-    }, 2000);
+  // 正解ポップアップ表示
+  showCorrectPopup("nextpage.html", "img/q4_correct.png");
 
-  } else {
-    document.querySelector('.result').textContent = "";
-  }
+} else {
+  document.querySelector('.result').textContent = "";
 }
+
+
+function showCorrectPopup(nextPage, imagePath) {
+  const popup = document.getElementById("popup");
+  const popupImage = document.getElementById("popupImage");
+
+  popupImage.src = imagePath;
+
+  popup.classList.remove("hidden");
+  popup.classList.add("show");
+
+  // 1.5秒後に遷移
+  setTimeout(() => {
+    window.location.href = nextPage;
+  }, 1500);
+}
+
+// ブラウザバック対策
+window.addEventListener("pageshow", () => {
+  const popup = document.getElementById("popup");
+  if (popup) {
+    popup.classList.remove("show");
+    popup.classList.add("hidden");
+  }
+});
+
 
 
 // --------------------------------------
