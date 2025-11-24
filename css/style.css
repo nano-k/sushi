@@ -266,14 +266,20 @@ h2 {
   font-size: 2rem;
   user-select: none;
 
-  background: #000;       /* ← 黒背景 */
-  color: #fff;            /* ← 白文字 */
+  background: #000;
+  color: #fff;
 
-  padding: 8px 14px;
-  border-radius: 8px;
-  border: 2px solid #444; /* 黒背景に合う枠色（薄めのグレー推奨） */
+  width: 80px;        /* 正方形に近い幅 */
+  height: 80px;       /* 正方形に近い高さ */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 6px;  /* 角の丸み控えめ */
+  border: 2px solid #444;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+
 
 
 .draggable:active {
