@@ -269,13 +269,13 @@ h2 {
   background: #000;
   color: #fff;
 
-  width: 80px;        /* 正方形に近い幅 */
-  height: 80px;       /* 正方形に近い高さ */
+  width: 40px;        /* 正方形に近い幅 */
+  height: 40px;       /* 正方形に近い高さ */
   display: flex;
   align-items: center;
   justify-content: center;
 
-  border-radius: 6px;  /* 角の丸み控えめ */
+  border-radius: 4px;  /* 角の丸み控えめ */
   border: 2px solid #444;
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
