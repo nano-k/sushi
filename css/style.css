@@ -265,12 +265,16 @@ h2 {
   cursor: grab;
   font-size: 2rem;
   user-select: none;
-  background: #ffffff;
+
+  background: #000;       /* ← 黒背景 */
+  color: #fff;            /* ← 白文字 */
+
   padding: 8px 14px;
   border-radius: 8px;
-  border: 2px solid #ccc;
+  border: 2px solid #444; /* 黒背景に合う枠色（薄めのグレー推奨） */
   box-shadow: 0 2px 6px rgba(0,0,0,0.15);
 }
+
 
 .draggable:active {
   cursor: grabbing;
