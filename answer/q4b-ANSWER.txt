@@ -1,0 +1,17 @@
+[
+  {
+    "answer": ["あかみ", "アカミ", "赤身"],
+    "next": "q10r3.html",
+    "image": "img/q4_correct.png"
+  },
+  {
+    "answer": ["あ"],
+    "next": "q10e.html",
+    "image": "img/a_correct.png"
+  },
+  {
+    "answer": ["み"],
+    "next": "q10r3.html",
+    "image": "img/mi_correct.png"
+  }
+]
