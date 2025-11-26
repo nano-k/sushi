@@ -1,0 +1,5 @@
+{
+  "answer": ["こはだ", "コハダ", "KOHADA", "kohada"],
+ "image": "img/q2_correct.png",
+  "next": "q10r3.html"
+}
