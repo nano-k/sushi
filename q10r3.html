@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>最終貫</title>
+<link rel="stylesheet" href="css/style.css">
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="js/answercheckf.js"></script>
+</head>
+<body>
+  <div class="container">
+
+<!-- 最終貫の見出し画像 -->
+<div class="title-image">
+  <img src="img/saisyuukann.png" alt="最終貫">
+</div>
+
+
+ <!-- 謎画像 -->
+<div class="puzzle-image">
+  <img src="img/q10_puzzle.png" alt="最終貫">
+</div>
+
+<p class="left-text">「注文ありがとうございます」</p>
+<p class="left-text">寿司を頼むと食べ終わるまで、次の注文ができない。</p>
+<p class="left-text">あなたの胃は限界が近い。</p>
+<p class="left-text">あなたの持ち物：『がり』。</p>
+
+<!-- 謎画像 -->
+  <script>
+    const puzzles = [
+      {img:"img/q1_puzzle.png", name:"q1r2"},
+      {img:"img/q2_puzzle.png", name:"q2r2"},
+      {img:"img/q3_puzzle.png", name:"q3r2"},
+ 　   {img:"img/q4_puzzle.png", name:"q4b"},
+      {img:"img/q5_puzzle.png", name:"q5r2"},
+      {img:"img/q6_puzzle.png", name:"q6r2"},
+      {img:"img/q8_puzzle.png", name:"q8r2"},
+      {img:"img/q9a_puzzle.png", name:"q9r2"}
+    ];
+
+    puzzles.forEach(p => {
+      document.write(`
+        <div class="puzzle-image">
+          <img src="${p.img}" alt="${p.name}">
+        </div>
+        <form name="${p.name}" onsubmit="AnswerCheck(this); return false;">
+          <div class="answer-box">
+            <input type="text" name="answer" placeholder="答えを入力" autocomplete="off">
+            <button type="submit">注文する</button>
+          </div>
+          <div class="result"></div>
+        </form>
+      `);
+    });
+  </script>
+
+  <!-- 共通ポップアップ -->
+  <div id="popup" class="popup hidden">
+    <div class="popup-content">
+      <img id="popupImage" src="" alt="正解！">
+      <p class="correct-text">正解！</p>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
