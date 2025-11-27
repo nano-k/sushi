@@ -329,6 +329,28 @@ h2 {
   margin: 20px auto;
 }
 
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+   info
+   ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.info-box {
+  border: 2px solid #333;
+  padding: 16px;
+  margin: 20px 0;
+  background: #fff;
+  border-radius: 6px; /* 角丸なくしたい場合は 0 に */
+}
+
+.info-box h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+}
+
+.info-box p {
+  margin: 6px 0;
+  line-height: 1.6;
+}
+
+
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
