@@ -421,6 +421,72 @@ h2 {
   color: #0066cc;
   text-decoration: none;
 }
+
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+  ヘッダー
+   ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* ヘッダー全体 */
+.noren-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: linear-gradient(to bottom, #fffae3, #ffd699);
+  border-bottom: 4px solid #c85a2c;
+  padding: 10px 20px;
+  font-family: "Yu Gothic", "Hiragino Kaku Gothic Pro", sans-serif;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* 左右リンク */
+.noren-left a,
+.noren-right a {
+  text-decoration: none;
+  color: #c85a2c;
+  font-weight: bold;
+  padding: 5px 10px;
+  border: 2px solid #c85a2c;
+  border-radius: 5px;
+  background-color: #fff0e0;
+  transition: 0.3s;
+}
+
+.noren-left a:hover,
+.noren-right a:hover {
+  background-color: #c85a2c;
+  color: #fff;
+}
+
+/* 中央タイトル */
+.noren-center h1 {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #c85a2c;
+  text-align: center;
+}
+
+/* のれん風の切れ目（下部） */
+.noren-header::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 10px;
+  background: repeating-linear-gradient(
+    to right,
+    #ffd699 0,
+    #ffd699 20px,
+    #fffae3 20px,
+    #fffae3 40px
+  );
+  clip-path: polygon(
+    0 0, 100% 0, 100% 70%, 90% 100%, 80% 70%, 70% 100%,
+    60% 70%, 50% 100%, 40% 70%, 30% 100%, 20% 70%, 10% 100%, 0 70%
+  );
+}
+
+
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
   .answer-box input {
