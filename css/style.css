@@ -336,7 +336,7 @@ h2 {
   border: 2px solid #ccc;
   padding: 16px;
   margin: 20px 0;
-  background: #f8f8f8;
+  background: #fff;
   border-radius: 1px; /* 角丸なくしたい場合は 0 に */
 }
 
