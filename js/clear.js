@@ -4,8 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
     e.preventDefault();
 
     const text =
-      "あなたは謎を解かないと帰れない寿司屋から帰宅した。#寿司謎 @kotohano_nano\n" +
-      "【クリア画像】 https://nano-k.github.io/sushi/img/q4_correct.png\n" +
+      "あなたは謎を解かないと帰れない寿司屋から脱出した。#寿司謎 #Web謎 @kotohano_nano\n" +
       "https://nano-k.github.io/sushi/";
 
     const url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text);
