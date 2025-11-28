@@ -1,15 +1,16 @@
-// 全ヒントのタイトルを取得
-const titles = document.querySelectorAll(".hint-title");
+// ◆ 1段目：貫タイトルをクリック → ヒント1〜3のタイトルが出現
+document.querySelectorAll('.hint-title').forEach(title => {
+  title.addEventListener('click', () => {
+    const list = title.nextElementSibling;
+    list.style.display = (list.style.display === 'block') ? 'none' : 'block';
+  });
+});
 
-titles.forEach(title => {
-  title.addEventListener("click", () => {
-    const content = title.nextElementSibling;
 
-    // 開閉切り替え
-    if (content.style.display === "block") {
-      content.style.display = "none";
-    } else {
-      content.style.display = "block";
-    }
+// ◆ 2段目：ヒント1〜3のタイトルをクリック → 本文が出現
+document.querySelectorAll('.hint-subtitle').forEach(sub => {
+  sub.addEventListener('click', () => {
+    const detail = sub.nextElementSibling;
+    detail.style.display = (detail.style.display === 'block') ? 'none' : 'block';
   });
 });
