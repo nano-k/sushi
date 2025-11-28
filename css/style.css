@@ -413,6 +413,14 @@ h2 {
   border-bottom: 2px solid #ccc;
 }
 
+.back {
+  margin-top: 30px;
+}
+
+.back a {
+  color: #0066cc;
+  text-decoration: none;
+}
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
   .answer-box input {
