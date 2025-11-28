@@ -333,7 +333,7 @@ h2 {
    info
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 .info-box {
-  border: 2px solid #333;
+  border: 2px solid #ccc;
   padding: 16px;
   margin: 20px 0;
   background: #f8f8f8;
