@@ -371,17 +371,25 @@ h2 {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
    hint
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-.hint-box {
+
+.hint-item {
   border: 2px solid #333;
-  padding: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
-.hint-box h2 {
+.hint-title {
+  padding: 12px;
+  background: #f4f4f4;
   font-size: 20px;
-  margin-top: 0;
+  cursor: pointer;
 }
 
+.hint-content {
+  display: none;
+  padding: 12px;
+  border-top: 1px solid #333;
+  background: #fff;
+}
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
