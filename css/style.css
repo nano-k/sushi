@@ -368,6 +368,20 @@ h2 {
   opacity: 0.8;
 }
 
+/* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
+   hint
+   ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+.hint-box {
+  border: 2px solid #333;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+
+.hint-box h2 {
+  font-size: 20px;
+  margin-top: 0;
+}
+
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
