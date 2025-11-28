@@ -1,4 +1,4 @@
-// クリア報告（固定文言）
+// クリア報告k（固定文言）
 document.getElementById("tweetBtn").addEventListener("click", function(e) {
   e.preventDefault();
 
