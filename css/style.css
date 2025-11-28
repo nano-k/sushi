@@ -425,65 +425,47 @@ h2 {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
   ヘッダー
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-/* のれん風ヘッダー */
+/* ヘッダー全体 */
 .noren-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, #fffae3, #ffd699);
-  border-bottom: 4px solid #c85a2c;
+  background-color: #fff8e7; /* シンプルな薄いベージュ */
+  border-bottom: 3px solid #c85a2c; /* のれんの棒風 */
   padding: 10px 20px;
   font-family: "Yu Gothic", "Hiragino Kaku Gothic Pro", sans-serif;
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 /* 左右リンク */
-.noren-left a,
-.noren-right a {
+.noren-link {
   text-decoration: none;
   color: #c85a2c;
   font-weight: bold;
-  padding: 5px 10px;
-  border: 2px solid #c85a2c;
-  border-radius: 5px;
-  background-color: #fff0e0;
-  transition: 0.3s;
+  padding: 6px 12px;
+  border: 1px solid #c85a2c;
+  border-radius: 4px;
+  background-color: #fff;
+  transition: 0.2s;
 }
 
-.noren-left a:hover,
-.noren-right a:hover {
+.noren-link:hover {
   background-color: #c85a2c;
   color: #fff;
 }
 
 /* 中央タイトル */
-.noren-center h1 {
+.noren-title {
   margin: 0;
-  font-size: 1.5rem;
-  color: #c85a2c;
+  font-size: 1.2rem; /* 適度な大きさにして潰れないように */
   text-align: center;
-}
-
-/* のれん風の切れ目（下部） */
-.noren-header::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 10px;
-  background: repeating-linear-gradient(
-    to right,
-    #ffd699 0,
-    #ffd699 20px,
-    #fffae3 20px,
-    #fffae3 40px
-  );
-  clip-path: polygon(
-    0 0, 100% 0, 100% 70%, 90% 100%, 80% 70%, 70% 100%,
-    60% 70%, 50% 100%, 40% 70%, 30% 100%, 20% 70%, 10% 100%, 0 70%
-  );
+  color: #c85a2c;
+  flex: 1; /* 中央で伸ばしてスペースを確保 */
+  white-space: nowrap; /* 改行させず一行で表示 */
+  overflow: hidden;
+  text-overflow: ellipsis; /* もし長すぎたら省略 */
 }
 
 
