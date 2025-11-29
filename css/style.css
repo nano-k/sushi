@@ -458,7 +458,6 @@ h2 {
   border: 2px solid #d3d3d3; /* 灰色枠線 */
   padding: 5px 12px;      /* 内側余白 */
   border-radius: 5px;     /* 角丸 */
-  font-weight: bold;
   transition: background 0.3s, color 0.3s;
 }
 
