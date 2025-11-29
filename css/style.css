@@ -1,9 +1,4 @@
 /* ===== 全体レイアウト ===== */
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
 body {
   font-family: "Yu Gothic", sans-serif;
   background: #f8f8f8;
@@ -436,6 +431,25 @@ h2 {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
   ヘッダー
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* 中央タイトル */
+.noren-center {
+  display: flex;
+  align-items: center;
+  position: relative;
+  justify-content: center; /* タイトル中央 */
+}
+
+/* 縦線を中央タイトルの左右に追加 */
+.noren-center::before,
+.noren-center::after {
+  content: "";
+  display: block;
+  width: 3px;        /* 太め */
+  height: 40px;
+  background-color: #d3d3d3;
+  margin: 0 10px;    /* タイトルに近い縦線 */
+}
+
 /* ヘッダー全体 */
 .noren-header {
   position: relative;
@@ -452,46 +466,12 @@ h2 {
 }
 
 /* 左右リンク */
-.noren-left, .noren-right {
-  display: flex;
-  align-items: center;
-}
-
-/* 左リンクの縦線 */
-.noren-left::after {
-  content: "";
-  display: block;
-  width: 3px;      /* 縦線の太さ */
-  height: 40px;
-  background-color: #d3d3d3;
-  margin-left: 8px; /* リンクと縦線の間隔 */
-}
-
-/* 右リンクの縦線 */
-.noren-right::before {
-  content: "";
-  display: block;
-  width: 3px;
-  height: 40px;
-  background-color: #d3d3d3;
-  margin-right: 8px; /* 縦線とリンクの間隔 */
-}
-
-/* 中央タイトル */
-.noren-center {
-  display: flex;
-  align-items: center;
-  justify-content: center; /* 常に中央 */
-}
-
-.noren-center h1 {
-  margin: 0;
-  font-size: 1.4rem;
+.noren-left a,
+.noren-right a {
+  text-decoration: none;
+  color: #333;
   font-weight: bold;
-  text-align: center;
 }
-
-
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
