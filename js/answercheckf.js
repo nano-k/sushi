@@ -83,3 +83,12 @@ window.addEventListener("pageshow", function(event) {
     popup.classList.add("hidden");
   }
 });
+
+
+// 戻るトグル
+$(document).ready(function() {
+  $("#pastBtn").click(function(e) {
+    e.preventDefault();
+    $("#pastMenu").slideToggle(200);
+  });
+});
