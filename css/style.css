@@ -425,27 +425,18 @@ h2 {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
   ヘッダー
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-/* のれんヘッダー（固定なし） */
 .noren-header {
-  position: relative; /* 通常の流れ */
+  position: relative;
   width: 100%;
-  background: #fff; /* 灰色ベース */
+  background: #fff; /* ヘッダー白 */
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between; /* 左右端にリンク */
+  justify-content: space-between;
   align-items: center;
   font-family: "Yu Gothic", sans-serif;
   box-sizing: border-box;
-  border-bottom: 5px solid #d3d3d3; /* 下部に白線で区切り */
+  border-bottom: 5px solid #d3d3d3; /* 下線を太め */
   z-index: 10;
-}
-
-/* 中央タイトル */
-.noren-center h1 {
-  margin: 0;
-  font-size: 1.4rem;
-  font-weight: bold;
-  text-align: center;
 }
 
 /* 左右リンク */
@@ -454,19 +445,31 @@ h2 {
   text-decoration: none;
   color: #333;
   font-weight: bold;
-  position: relative;
-  z-index: 1;
 }
 
-/* 縦線追加（左にマージンをつけて中央タイトル前後に表示） */
+/* 中央タイトル */
+.noren-center {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+/* 縦線を中央タイトルの左右に追加 */
 .noren-center::before,
 .noren-center::after {
   content: "";
-  display: inline-block;
+  display: block;
   width: 1px;
-  height: 20px;
-  background-color: #fff;
-  margin: 0 10px;
+  height: 24px; /* ヘッダー内に収まる高さ */
+  background-color: #d3d3d3; /* 白背景に馴染む灰色 */
+  margin: 0 15px;
+}
+
+.noren-center h1 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-align: center;
 }
 
 /* 過去謎トグルメニュー */
@@ -485,6 +488,23 @@ h2 {
 
 .past-mysteries a {
   display: block;
+  color: #333;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+  .noren-header {
+    flex-direction: column;
+    gap: 5px;
+  }
+  .noren-center::before,
+  .noren-center::after {
+    display: none; /* 縦線は非表示 */
+  }
+}
+
 
 
 /* ===== スマホ版レスポンシブ ===== */
