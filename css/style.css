@@ -533,3 +533,25 @@ h2 {
     padding: 10px 20px;
   }
 }
+
+  .noren-header {
+    flex-direction: column; /* 縦並び */
+    gap: 5px;
+    padding: 10px; /* 少し狭め */
+  }
+
+  .noren-center::before,
+  .noren-center::after {
+    display: none; /* 縦線は非表示 */
+  }
+
+  /* タイトル画像も少しマージン減らす */
+  .title-image {
+    margin-top: 15px;
+  }
+
+  .noren-left,
+  .noren-right,
+  .noren-center h1 {
+    font-size: 1.1rem; /* 小さめに調整 */
+  }
