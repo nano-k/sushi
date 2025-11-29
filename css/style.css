@@ -436,7 +436,7 @@ h2 {
   align-items: center;
   font-family: "Yu Gothic", sans-serif;
   box-sizing: border-box;
-  border-bottom: 1px solid #fff; /* 下部に白線で区切り */
+  border-bottom: 5px solid #fff; /* 下部に白線で区切り */
   z-index: 10;
 }
 
