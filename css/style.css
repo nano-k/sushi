@@ -517,6 +517,43 @@ h2 {
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
+
+  /* のれんヘッダー調整 */
+  .noren-header {
+    flex-direction: column; /* 縦並び */
+    align-items: center;
+    gap: 5px;
+    padding: 10px;
+  }
+
+  /* 左右リンクを中央寄せ */
+  .noren-left,
+  .noren-right {
+    justify-content: center;
+    width: 100%;
+  }
+
+  /* 縦線非表示 */
+  .noren-center::before,
+  .noren-center::after,
+  .noren-left::after,
+  .noren-right::before {
+    display: none;
+  }
+
+  /* 中央タイトルフォント調整 */
+  .noren-center h1 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  /* ヒントボタンのサイズ調整 */
+  .noren-right a {
+    padding: 5px 10px;
+    font-size: 0.9rem;
+  }
+
+  /* 解答フォーム */
   .answer-box input {
     width: 80%;
     font-size: 14px;
@@ -528,6 +565,7 @@ h2 {
     font-size: 14px;
   }
 
+  /* 正解ポップアップ */
   .popup-content img {
     width: 90%;
     max-width: 300px;
@@ -538,12 +576,15 @@ h2 {
     top: 3%;           /* 上端にさらに寄せる */
   }
 
+  /* タイトルや見出し */
   h2 {
     font-size: 1.2rem;
   }
 
+  /* 汎用ボタン */
   .btn {
     font-size: 1rem;
     padding: 10px 20px;
   }
 }
+
