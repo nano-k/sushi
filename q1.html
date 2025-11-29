@@ -11,13 +11,18 @@
 <body>
       <header class="noren-header">
   <div class="noren-left">
-    <a href="past-mysteries.html">過去謎</a>
+    <a href="hint.html">ヒント</a>
   </div>
   <div class="noren-center">
     <h1>謎を解かないと帰れない寿司屋</h1>
   </div>
   <div class="noren-right">
-    <a href="hint.html">ヒント</a>
+    <a href="#" id="pastBtn">過去謎</a>
+    <div class="past-mysteries" id="pastMenu">
+      <a href="past1.html">過去謎1</a>
+      <a href="past2.html">過去謎2</a>
+      <a href="past3.html">過去謎3</a>
+    </div>
   </div>
 </header>
   <div class="container">
@@ -72,6 +77,16 @@
     <p class="correct-text">正解！</p>
   </div>
 　</div>
+
+<script>
+// 過去謎トグル
+$(document).ready(function() {
+  $("#pastBtn").click(function(e) {
+    e.preventDefault();
+    $("#pastMenu").slideToggle(200);
+  });
+});
+</script>
   </div>
 </body>
 </html>
