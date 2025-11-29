@@ -435,7 +435,7 @@ h2 {
   align-items: center;
   font-family: "Yu Gothic", sans-serif;
   box-sizing: border-box;
-  border-bottom: 5px solid #d3d3d3; /* 下線を太め */
+  border-bottom: 5px solid #d3d3d3; /* 下線 */
   z-index: 10;
 }
 
@@ -459,10 +459,10 @@ h2 {
 .noren-center::after {
   content: "";
   display: block;
-  width: 1px;
-  height: 24px; /* ヘッダー内に収まる高さ */
-  background-color: #d3d3d3; /* 白背景に馴染む灰色 */
-  margin: 0 15px;
+  width: 2px;        /* 縦線をやや太く */
+  height: 24px;
+  background-color: #d3d3d3;
+  margin: 0 8px;     /* 左右リンクに近づける */
 }
 
 .noren-center h1 {
@@ -491,18 +491,6 @@ h2 {
   color: #333;
   text-decoration: none;
   margin: 5px 0;
-}
-
-/* スマホ対応 */
-@media (max-width: 600px) {
-  .noren-header {
-    flex-direction: column;
-    gap: 5px;
-  }
-  .noren-center::before,
-  .noren-center::after {
-    display: none; /* 縦線は非表示 */
-  }
 }
 
 
