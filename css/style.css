@@ -562,44 +562,47 @@ h2 {
     padding: 0 10px;   /* スマホで少し狭める */
   }
   
-  /* ヘッダー縦並び */
   .noren-header {
-    flex-direction: row; /* 横並び */
-    justify-content: space-between; /* 左右端に寄せる */
+    flex-direction: row; /* 横並びのまま */
+    justify-content: space-between;/* 左右端に配置 */
     align-items: center;
-    padding: 8px 10px;
-    gap: 0;
+    padding: 8px 12px;
   }
 
-  /* 左右リンクを幅いっぱいに中央寄せ */
+  /* 左右リンク */
   .noren-left,
   .noren-right {
     display: flex;
-    justify-content: center;
-    width: 100%;
+    align-items: center;
   }
 
-  /* 左右リンク共通で高さ揃え */
-  .noren-left a,
-  .noren-right a {
-    width: 90%;
-    max-width: 250px;
-    justify-content: center;  /* 中央寄せ */
-    height: 36px;             /* PC版と同じ高さ */
-    line-height: 36px;
-    padding: 0 12px;          /* 横余白 */
-    font-size: 1rem;
+  /* 戻るボタン */
+  .noren-left a {
+    padding: 6px 10px;
+    font-size: 0.9rem;
   }
 
-  /* アイコンと文字の間隔 */
+  /* アイコンと文字間隔 */
   .noren-left a i {
-    margin-right: 8px;
+    margin-right: 6px;
+  }
+
+  /* ヒントボタン */
+  .noren-right a {
+    padding: 6px 10px;
+    font-size: 0.9rem;
   }
 
   /* 中央タイトル */
+  .noren-center {
+    flex: 1;  /* 左右の間で広がる */
+    display: flex;
+    justify-content: center;/* 真ん中に */
+  }
+
   .noren-center h1 {
-    font-size: 1.2rem;
-    text-align: center;
+    font-size: 1rem;
+    margin: 0;
   }
 
   /* 縦線非表示 */
@@ -608,6 +611,7 @@ h2 {
     display: none;
   }
 }
+
 
   /* 解答フォーム */
   .answer-box input {
