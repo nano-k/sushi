@@ -425,13 +425,10 @@ h2 {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
   ヘッダー
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-/* のれんヘッダー */
+/* のれんヘッダー（固定なし） */
 .noren-header {
-  position: fixed; /* 上部に固定 */
-  top: 0;
-  left: 0;
+  position: relative; /* 通常の流れ */
   width: 100%;
-  z-index: 1000;
   background: #d3d3d3; /* 灰色ベース */
   padding: 10px 20px;
   display: flex;
@@ -439,6 +436,8 @@ h2 {
   align-items: center;
   font-family: "Yu Gothic", sans-serif;
   box-sizing: border-box;
+  border-bottom: 1px solid #fff; /* 下部に白線で区切り */
+  z-index: 10;
 }
 
 /* 中央タイトル */
@@ -475,23 +474,7 @@ h2 {
 
 .past-mysteries a {
   display: block;
-  color: #333;
-  text-decoration: none;
-  margin: 5px 0;
-}
 
-/* コンテンツがヘッダーに隠れないように上部余白 */
-.container {
-  padding-top: 60px; /* ヘッダーの高さに合わせて調整 */
-}
-
-/* スマホ対応 */
-@media (max-width: 600px) {
-  .noren-header {
-    flex-direction: column;
-    gap: 5px;
-  }
-}
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
