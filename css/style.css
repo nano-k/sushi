@@ -209,7 +209,7 @@ h2 {
   cursor: pointer;
 }
 
-.selectSubmit:hover {
+#selectSubmit:hover {
   background: #567238;
 }
 
@@ -237,7 +237,7 @@ h2 {
   font-weight: 600;
 }
 
-.toggleButton:hover {
+#toggleButton:hover {
   background: #567238;
 }
 
