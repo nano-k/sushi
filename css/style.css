@@ -33,9 +33,9 @@ h2 {
 
 /* ルール説明 */
 .rule-box {
-  background-color: #fff8c6;  /* 薄い黄色 */
-  border: 2px solid #f1c40f; /* 黄色の枠線 */
-  border-radius: 8px;
+  background-color: #fff;  /* 白 */
+  border: 2px solid #ccc; /* 灰の枠線 */
+  border-radius: 4px;
   padding: 15px 20px;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.1);
