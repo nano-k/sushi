@@ -37,7 +37,7 @@ h2 {
 .rule-box {
   background-color: #fff;  /* 背景 */
   border: 2px solid #d3d3d3; /* 枠線 */
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 15px 20px;
   margin-bottom: 20px;
   text-align: left; /* 左揃え */
