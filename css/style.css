@@ -428,53 +428,54 @@ h2 {
 /* のれんヘッダー */
 .noren-header {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background: #ffebcd; /* のれん色 */
+  background: #d3d3d3; /* 灰色ベース */
   padding: 10px 20px;
-  border-bottom: 4px solid #d2691e; /* 下端 */
-  position: relative;
   font-family: "Yu Gothic", sans-serif;
-  z-index: 10;
+  gap: 20px; /* 左右の間隔 */
+  position: relative;
 }
 
 /* 中央タイトル */
 .noren-center h1 {
   margin: 0;
   font-size: 1.2rem;
-  letter-spacing: 2px;
-  z-index: 1;
+  font-weight: bold;
 }
 
 /* 左右リンク */
 .noren-left a,
-.noren-right a {
+.noren-right a,
+.noren-center h1 {
   text-decoration: none;
   color: #333;
   font-weight: bold;
   padding: 0 10px;
   position: relative;
-  z-index: 2;
 }
 
-/* のれん左右切り込み */
-.noren-left::after,
-.noren-right::before {
-  content: "";
-  display: block;
-  width: 10px;
-  height: 100%;
-  background: #f8f8f8; /* 背景色で切り込み */
+/* 左右の区切り線 */
+.noren-left a::after,
+.noren-center h1::before,
+.noren-center h1::after {
+  content: "｜";
+  color: #888;
   position: absolute;
   top: 0;
+  font-weight: normal;
 }
 
-.noren-left::after {
-  right: -10px;
+.noren-left a::after {
+  right: -15px;
 }
 
-.noren-right::before {
-  left: -10px;
+.noren-center h1::before {
+  left: -15px;
+}
+
+.noren-center h1::after {
+  right: -15px;
 }
 
 /* 過去謎トグルメニュー */
@@ -482,9 +483,9 @@ h2 {
   display: none;
   position: absolute;
   top: 100%;
-  right: 0;
-  background: #fff8dc;
-  border: 1px solid #d2691e;
+  left: 0;
+  background: #f8f8f8;
+  border: 1px solid #888;
   padding: 10px;
   min-width: 150px;
   text-align: left;
@@ -504,7 +505,9 @@ h2 {
     flex-direction: column;
     gap: 5px;
   }
-}
+  .noren-left a::after,
+  .noren-center h1::before,
+  .noren-center h1::after {
 
 
 /* ===== スマホ版レスポンシブ ===== */
