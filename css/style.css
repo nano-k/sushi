@@ -543,45 +543,86 @@ h2 {
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
-  .noren-header {
-    flex-direction: row;          /* 横並び維持 */
-    justify-content: space-between;
+.noren-header {
+    flex-direction: row;           /* 横並びのまま */
+    justify-content: space-between;/* 左右端に配置 */
     align-items: center;
     padding: 8px 12px;
   }
 
   /* 左右リンク */
-  .noren-left, .noren-right {
+  .noren-left,
+  .noren-right {
     display: flex;
     align-items: center;
   }
 
   /* 戻るボタン */
-  .noren-left a { font-size: 0.9rem; padding: 6px 10px; justify-content: center; }
-  .noren-left a i { margin-right: 6px; }
+  .noren-left a {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
+
+  /* アイコンと文字間隔 */
+  .noren-left a i {
+    margin-right: 6px;
+  }
 
   /* ヒントボタン */
-  .noren-right a { font-size: 0.9rem; padding: 6px 10px; justify-content: center; }
+  .noren-right a {
+    padding: 6px 10px;
+    font-size: 0.9rem;
+  }
 
   /* 中央タイトル */
-  .noren-center { flex: 1; display: flex; justify-content: center; }
-  .noren-center h1 { font-size: 1rem; }
+  .noren-center {
+    flex: 1;/* 左右の間で広がる */
+    display: flex;
+    justify-content: center;/* 真ん中に */
+  }
+
+  .noren-center h1 {
+    font-size: 1rem;
+    margin: 0;
+  }
 
   /* 縦線非表示 */
   .noren-center::before,
-  .noren-center::after { display: none; }
-
+  .noren-center::after {
+    display: none;
+  }
+}
   /* 解答フォーム */
-  .answer-box input { width: 80%; font-size: 14px; }
-  .answer-box button { width: 80%; margin: 10px 0 0 0; font-size: 14px; }
+  .answer-box input {
+    width: 80%;
+    font-size: 14px;
+  }
+
+  .answer-box button {
+    width: 80%;
+    margin: 10px 0 0 0;
+    font-size: 14px;
+  }
 
   /* 正解ポップアップ */
-  .popup-content img { width: 90%; max-width: 300px; }
-  .correct-text { font-size: 1.8rem; top: 3%; }
+  .popup-content img {
+    width: 90%;
+    max-width: 300px;
+  }
+
+  .correct-text {
+    font-size: 1.8rem;
+    top: 3%;
+  }
 
   /* タイトルや見出し */
-  h2 { font-size: 1.2rem; }
+  h2 {
+    font-size: 1.2rem;
+  }
 
   /* 汎用ボタン */
-  .btn { font-size: 1rem; padding: 10px 20px; }
+  .btn {
+    font-size: 1rem;
+    padding: 10px 20px;
+  }
 }
