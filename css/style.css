@@ -516,6 +516,31 @@ h2 {
   color: #000;
 }
 
+/* 左リンク（戻る） */
+.noren-left a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;           /* 幅 */
+  height: 40px;          /* 高さ */
+  background-color: #fff;  /* 白背景 */
+  border: 2px solid #d3d3d3; /* 灰色枠 */
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s, color 0.3s;
+}
+
+/* SVGアイコンの色とサイズ */
+.noren-left a svg path {
+  stroke: #000; /* 黒 */
+}
+
+/* ホバー時 */
+.noren-left a:hover {
+  background-color: #f0f0f0;
+}
+
+
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
