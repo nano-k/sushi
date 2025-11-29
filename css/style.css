@@ -502,18 +502,21 @@ h2 {
 /* 右リンク（ヒント） */
 .noren-right a {
   text-decoration: none;
-  color: #fff;            /* 文字色 */
-  background-color: #333; /* 枠の背景色 */
+  color: #000;            /* 文字色黒 */
+  background-color: #fff; /* 白背景 */
+  border: 2px solid #d3d3d3; /* 灰色枠線 */
   padding: 5px 12px;      /* 内側余白 */
   border-radius: 5px;     /* 角丸 */
   font-weight: bold;
-  transition: background 0.3s;
+  transition: background 0.3s, color 0.3s;
 }
 
-/* ホバー時の色変化 */
+/* ホバー時 */
 .noren-right a:hover {
-  background-color: #555;
+  background-color: #f0f0f0; /* 少し灰色に */
+  color: #000;
 }
+
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
