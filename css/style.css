@@ -567,7 +567,7 @@ h2 {
 @media screen and (max-width: 480px) {
 
   .container {
-    padding: 0 10px;   /* スマホで少し狭める */
+    padding: 0 20px;   /* スマホで少し狭める */
   }
   
   .noren-header {
