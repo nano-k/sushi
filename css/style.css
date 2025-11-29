@@ -499,6 +499,22 @@ h2 {
   margin: 5px 0;
 }
 
+/* 右リンク（ヒント） */
+.noren-right a {
+  text-decoration: none;
+  color: #fff;            /* 文字色 */
+  background-color: #333; /* 枠の背景色 */
+  padding: 5px 12px;      /* 内側余白 */
+  border-radius: 5px;     /* 角丸 */
+  font-weight: bold;
+  transition: background 0.3s;
+}
+
+/* ホバー時の色変化 */
+.noren-right a:hover {
+  background-color: #555;
+}
+
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
   .answer-box input {
