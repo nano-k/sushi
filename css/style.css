@@ -45,8 +45,10 @@ h2 {
 }
 
 /* 見出し画像 */
-
-
+.title-image {
+  margin-top: 20px; /* 数値を増やすとさらに下にずらせます */
+  text-align: center; /* 画像を中央揃え */
+}
 .title-image img {
   width: 50%;         /* 画像の幅調整 */
   max-width: 150px;   /* 最大幅 */
