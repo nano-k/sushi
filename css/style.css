@@ -429,14 +429,14 @@ h2 {
 .noren-header {
   position: relative; /* 通常の流れ */
   width: 100%;
-  background: #d3d3d3; /* 灰色ベース */
+  background: #fff; /* 灰色ベース */
   padding: 10px 20px;
   display: flex;
   justify-content: space-between; /* 左右端にリンク */
   align-items: center;
   font-family: "Yu Gothic", sans-serif;
   box-sizing: border-box;
-  border-bottom: 5px solid #fff; /* 下部に白線で区切り */
+  border-bottom: 5px solid #d3d3d3; /* 下部に白線で区切り */
   z-index: 10;
 }
 
