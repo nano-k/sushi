@@ -85,7 +85,7 @@ window.addEventListener("pageshow", function(event) {
 });
 
 
-// 過去謎トグル
+// 戻るトグル
 $(document).ready(function() {
   $("#pastBtn").click(function(e) {
     e.preventDefault();
