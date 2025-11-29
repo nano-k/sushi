@@ -558,9 +558,7 @@ h2 {
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
 
-  .container {
-    padding: 0 10px;   /* スマホで少し狭める */
-  }
+
 
   
   /* ヘッダー縦並び */
