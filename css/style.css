@@ -468,7 +468,7 @@ h2 {
   width: 3px;        /* 縦線をやや太く */
   height: 40px;
   background-color: #d3d3d3;
-  margin: 0 80px;     /* 左右リンクに近づける */
+  margin: 0 200px;     /* 左右リンクに近づける */
 }
 
 .noren-center h1 {
