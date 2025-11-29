@@ -1,14 +1,10 @@
 /* ===== 全体レイアウト ===== */
 body {
-  margin: 0; 
   padding: 20px;
   font-family: "Yu Gothic", sans-serif;
   background: #f8f8f8;
   text-align: center;
 }
-
-.noren-header {
-  margin: 0; 
 
 
 h2 {
