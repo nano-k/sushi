@@ -436,44 +436,52 @@ h2 {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
   ヘッダー
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
+/* ヘッダー全体 */
 .noren-header {
   position: relative;
   width: 100%;
-  background: #fff; /* ヘッダー白 */
+  background: #fff;
   padding: 10px 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* 左右リンクは端に固定 */
   align-items: center;
   font-family: "Yu Gothic", sans-serif;
   box-sizing: border-box;
-  border-bottom: 5px solid #d3d3d3; /* 下線 */
+  border-bottom: 5px solid #d3d3d3;
   z-index: 10;
 }
 
 /* 左右リンク */
-.noren-left a,
-.noren-right a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
+.noren-left, .noren-right {
+  display: flex;
+  align-items: center;
+}
+
+/* 左リンクの縦線 */
+.noren-left::after {
+  content: "";
+  display: block;
+  width: 3px;      /* 縦線の太さ */
+  height: 40px;
+  background-color: #d3d3d3;
+  margin-left: 8px; /* リンクと縦線の間隔 */
+}
+
+/* 右リンクの縦線 */
+.noren-right::before {
+  content: "";
+  display: block;
+  width: 3px;
+  height: 40px;
+  background-color: #d3d3d3;
+  margin-right: 8px; /* 縦線とリンクの間隔 */
 }
 
 /* 中央タイトル */
 .noren-center {
   display: flex;
   align-items: center;
-  position: relative;
-}
-
-/* 縦線を中央タイトルの左右に追加 */
-.noren-center::before,
-.noren-center::after {
-  content: "";
-  display: block;
-  width: 3px;        /* 縦線をやや太く */
-  height: 40px;
-  background-color: #d3d3d3;
-  margin: 0 200px;     /* 左右リンクに近づける */
+  justify-content: center; /* 常に中央 */
 }
 
 .noren-center h1 {
@@ -481,27 +489,6 @@ h2 {
   font-size: 1.4rem;
   font-weight: bold;
   text-align: center;
-}
-
-/* 過去謎トグルメニュー */
-.past-mysteries {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #f8f8f8;
-  border: 1px solid #888;
-  padding: 10px;
-  min-width: 150px;
-  text-align: left;
-  z-index: 2;
-}
-
-.past-mysteries a {
-  display: block;
-  color: #333;
-  text-decoration: none;
-  margin: 5px 0;
 }
 
 
