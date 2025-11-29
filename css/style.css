@@ -425,47 +425,85 @@ h2 {
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
   ヘッダー
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
-/* ヘッダー全体 */
+/* のれんヘッダー */
 .noren-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #fff8e7; /* シンプルな薄いベージュ */
-  border-bottom: 3px solid #c85a2c; /* のれんの棒風 */
+  background: #ffebcd; /* のれん色 */
   padding: 10px 20px;
-  font-family: "Yu Gothic", "Hiragino Kaku Gothic Pro", sans-serif;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-
-/* 左右リンク */
-.noren-link {
-  text-decoration: none;
-  color: #c85a2c;
-  font-weight: bold;
-  padding: 6px 12px;
-  border: 1px solid #c85a2c;
-  border-radius: 4px;
-  background-color: #fff;
-  transition: 0.2s;
-}
-
-.noren-link:hover {
-  background-color: #c85a2c;
-  color: #fff;
+  border-bottom: 4px solid #d2691e; /* 下端 */
+  position: relative;
+  font-family: "Yu Gothic", sans-serif;
+  z-index: 10;
 }
 
 /* 中央タイトル */
-.noren-title {
+.noren-center h1 {
   margin: 0;
-  font-size: 1.2rem; /* 適度な大きさにして潰れないように */
-  text-align: center;
-  color: #c85a2c;
-  flex: 1; /* 中央で伸ばしてスペースを確保 */
-  white-space: nowrap; /* 改行させず一行で表示 */
-  overflow: hidden;
-  text-overflow: ellipsis; /* もし長すぎたら省略 */
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  z-index: 1;
+}
+
+/* 左右リンク */
+.noren-left a,
+.noren-right a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  padding: 0 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* のれん左右切り込み */
+.noren-left::after,
+.noren-right::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 100%;
+  background: #f8f8f8; /* 背景色で切り込み */
+  position: absolute;
+  top: 0;
+}
+
+.noren-left::after {
+  right: -10px;
+}
+
+.noren-right::before {
+  left: -10px;
+}
+
+/* 過去謎トグルメニュー */
+.past-mysteries {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: #fff8dc;
+  border: 1px solid #d2691e;
+  padding: 10px;
+  min-width: 150px;
+  text-align: left;
+  z-index: 2;
+}
+
+.past-mysteries a {
+  display: block;
+  color: #333;
+  text-decoration: none;
+  margin: 5px 0;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+  .noren-header {
+    flex-direction: column;
+    gap: 5px;
+  }
 }
 
 
