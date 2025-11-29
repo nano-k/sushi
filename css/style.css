@@ -197,7 +197,7 @@ h2 {
 #selectSubmit {
   margin-top: 20px;
   padding: 10px 24px;      /* 少し細め */
-  background: #0078ff;         /**/
+  background: #607F3E;         /**/
   color: #fff;              /* 白文字 */
   border: none;
   border-radius: 8px;       /* 軽い丸み */
@@ -207,6 +207,10 @@ h2 {
   letter-spacing: 0.5px;
 
   cursor: pointer;
+}
+
+.selectSubmit:hover {
+  background: #567238;
 }
 
 /* 切り替え画像 */
@@ -224,13 +228,17 @@ h2 {
 #toggleButton {
   margin: 10px auto 20px;
   padding: 10px 24px;
-  background: #0078ff;
+  background: #607F3E;
   color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
+}
+
+.toggleButton:hover {
+  background: #567238;
 }
 
 /* ボタン */
