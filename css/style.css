@@ -245,13 +245,34 @@ h2 {
 #tButton {
   margin: 10px auto 20px;
   padding: 10px 24px;
-  background: #0078ff;
+  background: #607F3E;
   color: #fff;
   border: none;
   border-radius: 8px;
   cursor: pointer;
   font-size: 1rem;
   font-weight: 600;
+}
+
+#tButton:hover {
+  background: #567238;
+}
+
+/* ボタン */
+#agButton {
+  margin: 10px auto 20px;
+  padding: 10px 24px;
+  background: #D25729;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+#agButton:hover {
+  background: #BD4E24;
 }
 
 /* ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝
