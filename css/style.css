@@ -427,17 +427,17 @@ h2 {
    ＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝＝ */
 /* のれんヘッダー */
 .noren-header {
-  display: flex;
-  justify-content: space-between; /* 左右端にリンク */
-  align-items: center;
-  background: #d3d3d3; /* 灰色ベース */
-  padding: 10px 20px;
-  font-family: "Yu Gothic", sans-serif;
-  position: fixed; /* ページ上部に固定 */
+  position: fixed; /* 上部に固定 */
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* コンテンツより前面 */
+  z-index: 1000;
+  background: #d3d3d3; /* 灰色ベース */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between; /* 左右端にリンク */
+  align-items: center;
+  font-family: "Yu Gothic", sans-serif;
   box-sizing: border-box;
 }
 
@@ -456,6 +456,7 @@ h2 {
   color: #333;
   font-weight: bold;
   position: relative;
+  z-index: 1;
 }
 
 /* 過去謎トグルメニュー */
@@ -479,6 +480,11 @@ h2 {
   margin: 5px 0;
 }
 
+/* コンテンツがヘッダーに隠れないように上部余白 */
+.container {
+  padding-top: 60px; /* ヘッダーの高さに合わせて調整 */
+}
+
 /* スマホ対応 */
 @media (max-width: 600px) {
   .noren-header {
@@ -486,7 +492,6 @@ h2 {
     gap: 5px;
   }
 }
-
 
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
