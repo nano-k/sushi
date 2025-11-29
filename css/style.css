@@ -551,38 +551,25 @@ h2 {
   .noren-header {
     flex-direction: column;
     align-items: center;
-    gap: 5px;
-    padding: 10px;
+    gap: 8px;
+    padding: 10px 15px;
   }
 
-  /* 左右リンク中央寄せ */
+  /* 左右リンクを中央寄せ */
   .noren-left,
   .noren-right {
-    justify-content: center;
+    display: flex;
+    justify-content: center; /* 中央揃え */
     width: 100%;
-  }
-
-  /* 縦線非表示 */
-  .noren-center::before,
-  .noren-center::after,
-  .noren-left::after,
-  .noren-right::before {
-    display: none;
-  }
-
-  /* 中央タイトル */
-  .noren-center h1 {
-    font-size: 1.2rem;
-    text-align: center;
   }
 
   /* 戻るボタン */
   .noren-left a {
+    justify-content: center; /* 左端ではなく中央 */
     width: 90%;
     max-width: 250px;
     padding: 10px 12px;
     font-size: 1rem;
-    justify-content: flex-start;
   }
 
   /* アイコンと文字間隔 */
@@ -598,6 +585,19 @@ h2 {
     font-size: 1rem;
     justify-content: center;
   }
+
+  /* 中央タイトル */
+  .noren-center h1 {
+    font-size: 1.2rem;
+    text-align: center;
+  }
+
+  /* 縦線非表示 */
+  .noren-center::before,
+  .noren-center::after {
+    display: none;
+  }
+}
 
   /* 解答フォーム */
   .answer-box input {
