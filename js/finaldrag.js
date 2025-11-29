@@ -135,3 +135,12 @@ function createCard(text) {
   document.body.appendChild(card);
   return card;
 }
+
+
+// 戻るトグル
+$(document).ready(function() {
+  $("#pastBtn").click(function(e) {
+    e.preventDefault();
+    $("#pastMenu").slideToggle(200);
+  });
+});
