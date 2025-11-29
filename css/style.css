@@ -459,10 +459,10 @@ h2 {
 .noren-center::after {
   content: "";
   display: block;
-  width: 2px;        /* 縦線をやや太く */
-  height: 24px;
+  width: 5px;        /* 縦線をやや太く */
+  height: 40px;
   background-color: #d3d3d3;
-  margin: 0 8px;     /* 左右リンクに近づける */
+  margin: 0 20px;     /* 左右リンクに近づける */
 }
 
 .noren-center h1 {
