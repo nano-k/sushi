@@ -458,6 +458,17 @@ h2 {
   z-index: 1;
 }
 
+/* 縦線追加（左にマージンをつけて中央タイトル前後に表示） */
+.noren-center::before,
+.noren-center::after {
+  content: "";
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  background-color: #fff;
+  margin: 0 10px;
+}
+
 /* 過去謎トグルメニュー */
 .past-mysteries {
   display: none;
