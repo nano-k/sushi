@@ -545,10 +545,11 @@ h2 {
 /* ===== スマホ版レスポンシブ ===== */
 @media screen and (max-width: 480px) {
 .noren-header {
-    flex-direction: row;           /* 横並びのまま */
-    justify-content: space-between;/* 左右端に配置 */
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
     padding: 8px 12px;
+  　margin: 0;
   }
 
   /* 左右リンク */
