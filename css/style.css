@@ -26,6 +26,7 @@ h2 {
 
 /* ページ全体を中央に固定幅で配置 */
 .container {
+  width: 95%;
   max-width: 600px;   /* 横幅を制限 */
   margin: 0 auto;     /* 左右中央寄せ */
   padding: 0 10px;    /* 横の余白 */
