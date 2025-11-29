@@ -35,8 +35,8 @@ h2 {
 
 /* ルール説明 */
 .rule-box {
-  background-color: #F4EDD0;  /* 背景 */
-  border: 2px solid #ccc; /* 灰の枠線 */
+  background-color: #fff;  /* 背景 */
+  border: 2px solid ##20242C; /* 枠線 */
   border-radius: 4px;
   padding: 15px 20px;
   margin-bottom: 20px;
