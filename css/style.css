@@ -459,7 +459,7 @@ h2 {
   gap: 5px;
   padding: 8px 12px;      /* 高さを揃えるため共通に */
   line-height: 1.2;        /* 高さを統一 */
-  height: 36px;            /* 任意で固定高さ */
+  height: 28px;            /* 任意で固定高さ */
   text-decoration: none;
   color: #000;
   font-weight: bold;
