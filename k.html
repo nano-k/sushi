@@ -6,179 +6,188 @@
 <title>検閲世界</title>
 
 <style>
-  body {
-    margin: 0;
-    background: #fff;
-    overflow: hidden;
-    font-family: "Noto Sans JP", sans-serif;
-  }
+/* ---- 基本 ---- */
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  overflow: hidden;
+}
 
-  /* --- モザイクタイル --- */
-  #mosaicCanvas {
-    position: fixed;
-    top: 40%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 180px;
-    height: 180px;
-    z-index: 20;
-    opacity: 1;
-    transition: opacity 0.25s ease-out;
-    image-rendering: pixelated;
-  }
+/* ---- 中央のタイトル演出 ---- */
+#censorTitleWrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+  z-index: 999;
+  transition: opacity 0.35s ease; /* タイトル消失 */
+}
 
-  /* --- タイトル --- */
-  #titleText {
-    position: fixed;
-    top: 45%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 48px;
-    letter-spacing: 0.2em;
+#censorTitle {
+  font-size: 48px;
+  letter-spacing: 0.15em;
+  display: flex;
+  gap: 0.1em;
+  color: #000;
+}
+
+#charKen {
+  position: relative;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+}
+
+/* ---- モザイクタイル ---- */
+.mosaic-tile {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #000;
+  opacity: 1;
+  animation: tileFade 0.28s forwards;
+}
+
+@keyframes tileFade {
+  to {
     opacity: 0;
-    z-index: 10;
-    transition: opacity 0.2s;
+    transform: scale(0.7);
   }
+}
 
-  /* 検の文字だけ最初非表示 */
-  #kan {
-    opacity: 0;
-  }
+/* ---- 本文 ---- */
+.container {
+  opacity: 0;
+  transition: opacity 1.2s ease; /* ← ゆっくり浮かび上がる */
+}
 
-  /* --- ノイズ（砂嵐） --- */
-  #noiseCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: 30;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.2s linear;
-  }
+.show-content {
+  opacity: 1;
+}
 
-  /* --- 本文 --- */
-  .content {
-    opacity: 0;
-    padding: 40px;
-    z-index: 1;
-    line-height: 1.8;
-    transition: opacity 0.6s ease-out;
-  }
+header {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 28px;
+}
+
+main {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.next-btn-wrap {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.next-btn {
+  display: inline-block;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid #000;
+  color: #000;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+}
 </style>
 </head>
 
 <body>
 
-<!-- モザイク -->
-<canvas id="mosaicCanvas"></canvas>
-
-<!-- 砂嵐ノイズ -->
-<canvas id="noiseCanvas"></canvas>
-
-<!-- タイトル -->
-<div id="titleText">
-  <span id="kan">検</span>閲世界
+<!-- ======= 検の文字モザイク演出 ======= -->
+<div id="censorTitleWrapper">
+  <div id="censorTitle">
+    <span id="charKen">検</span>
+    <span>閲世界</span>
+  </div>
 </div>
 
-<!-- 本文 -->
-<div class="content">
-  <h2>イントロダクション</h2>
-  <p>
-    あなたが目を覚ましたのは、文字だらけの奇妙な世界。<br>
-    文字にはどこか違和感があることにあなたは気付く。<br><br>
-    あなたに与えられた能力は文字を修正する力。<br>
-    文字を正しく修正して謎を解き、この歪んだ世界から帰還せよ。
-  </p>
-  <a href="world.html">進む</a>
+<!-- ======= 本文 ======= -->
+<header>検閲世界</header>
+
+<div class="container">
+<main>
+  <section class="page" data-page="1">
+    <h2 class="section-title">イントロダクション</h2>
+    <p>
+      あなたが目を覚ましたのは、文字だらけの奇妙な世界。<br>
+      文字にはどこか違和感があることにあなたは気付く。<br><br>
+      あなたに与えられた能力は文字を修正する力。<br>
+      文字を正しく修正して謎を解き、この歪んだ世界から帰還せよ。
+    </p>
+
+    <div class="next-btn-wrap">
+      <a class="next-btn" href="world.html">進む</a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Page <span id="pageNum">1</span>
+</footer>
 </div>
+
 
 <script>
-/* =======================================================
-    モザイクアニメーション（タイルランダム出現）
-======================================================= */
-const mosaic = document.getElementById("mosaicCanvas");
-const ctx = mosaic.getContext("2d");
-const tileSize = 18;
-const cols = Math.floor(mosaic.width / tileSize);
-const rows = Math.floor(mosaic.height / tileSize);
+// =======================================
+// 検 の文字にランダムモザイク
+// =======================================
+function createMosaic() {
+  const ken = document.getElementById("charKen");
+  const rect = ken.getBoundingClientRect();
+  
+  const tileSize = 14;
+  const cols = Math.ceil(rect.width / tileSize);
+  const rows = Math.ceil(rect.height / tileSize);
 
-let tiles = [];
-for (let y = 0; y < rows; y++) {
-  for (let x = 0; x < cols; x++) {
-    tiles.push({ x, y, show: false });
-  }
-}
-tiles.sort(() => Math.random() - 0.5);
+  const offsetY = 4; // モザイクを少し下に
 
-let idx = 0;
-function drawMosaic() {
-  if (idx < tiles.length) {
-    for (let n = 0; n < 6; n++) {
-      if (idx >= tiles.length) break;
-      let t = tiles[idx];
-      ctx.fillStyle = "#888";
-      ctx.fillRect(t.x * tileSize, t.y * tileSize, tileSize, tileSize);
-      idx++;
+  for (let y = 0; y < rows; y++) {
+    for (let x = 0; x < cols; x++) {
+      const tile = document.createElement("div");
+      tile.classList.add("mosaic-tile");
+
+      tile.style.left = `${x * tileSize}px`;
+      tile.style.top = `${y * tileSize + offsetY}px`;
+
+      tile.style.animationDelay = `${Math.random() * 0.28}s`;
+
+      ken.appendChild(tile);
     }
-    requestAnimationFrame(drawMosaic);
   }
 }
-drawMosaic();
 
-/* =======================================================
-    検 → タイトル → ノイズ → 本文 の順で演出
-======================================================= */
+createMosaic();
 
+
+// =======================================
+// タイトル消失 → 真っ白 → 本文ゆっくり表示
+// =======================================
 setTimeout(() => {
-  // モザイク消える & 「検」出現
-  mosaic.style.opacity = 0;
-  document.getElementById("kan").style.opacity = 1;
-  document.getElementById("titleText").style.opacity = 1;
-}, 800);
 
+  // 1. タイトルを消す
+  document.getElementById("censorTitleWrapper").style.opacity = 0;
 
-/* --- 砂嵐ノイズ --- */
-const noiseCanvas = document.getElementById("noiseCanvas");
-const nctx = noiseCanvas.getContext("2d");
-noiseCanvas.width = window.innerWidth;
-noiseCanvas.height = window.innerHeight;
-
-function drawNoise() {
-  let imgData = nctx.createImageData(noiseCanvas.width, noiseCanvas.height);
-  for (let i = 0; i < imgData.data.length; i += 4) {
-    let r = Math.random() * 255;
-    imgData.data[i] = r;
-    imgData.data[i + 1] = r;
-    imgData.data[i + 2] = r;
-    imgData.data[i + 3] = 255;
-  }
-  nctx.putImageData(imgData, 0, 0);
-}
-
-let noiseInterval;
-
-/* --- ノイズ発生 → タイトル消去 → 本文表示 --- */
-setTimeout(() => {
-  // ノイズ発生
-  noiseCanvas.style.opacity = 1;
-  noiseInterval = setInterval(drawNoise, 30);
-
-  // タイトル消える
-  document.getElementById("titleText").style.opacity = 0;
-
-  // ノイズを短時間だけ出す
+  // 2. 真っ白の状態を 400ms 維持
   setTimeout(() => {
-    clearInterval(noiseInterval);
-    noiseCanvas.style.opacity = 0;
 
-    // 本文表示
-    document.querySelector(".content").style.opacity = 1;
+    // 3. 本文ゆっくりフェードイン
+    document.querySelector(".container").classList.add("show-content");
     document.body.style.overflow = "auto";
-  }, 250);
-}, 1200);
 
+  }, 400); // 真っ白時間
+
+}, 650); // モザイク終了待ち
 </script>
+
 </body>
 </html>
