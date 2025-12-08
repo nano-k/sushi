@@ -16,18 +16,16 @@
     text-align: center;
     font-size: 40px;
     margin-top: 100px;
-    letter-spacing: 4px;
     color: #000;
+    letter-spacing: 2px;   /* 自然に見える程度に調整 */
     opacity: 0;
     transition: opacity 0.6s ease-out;
   }
 
-  /* 「検」の文字を包む */
+  /* 「検」だけ包む（固定幅を削除して自然な幅に） */
   .kanji-box {
     position: relative;
     display: inline-block;
-    width: 48px; /* 好みで調整可 */
-    height: 48px;
   }
 
   .kanji-box span {
@@ -35,7 +33,7 @@
     z-index: 10;
   }
 
-  /* モザイクタイルのコンテナ */
+  /* モザイクタイルのコンテナ（検の文字ピッタリのサイズ） */
   .mosaic-container {
     position: absolute;
     inset: 0;
@@ -44,43 +42,102 @@
     display: grid;
   }
 
-  /* タイル */
   .tile {
     background: #000;
     opacity: 0;
-    animation: tileFade 0.4s forwards;
+    animation: tileFade 0.45s forwards;
   }
 
-  /* タイルがランダムに出てランダムに消える */
   @keyframes tileFade {
     0%   { opacity: 0; }
-    10%  { opacity: 0.9; }
+    15%  { opacity: 0.9; }
     100% { opacity: 0; }
   }
+
+  /* 本編エリア */
+  .container {
+    margin-top: 120px;
+    width: 90%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #222;
+    opacity: 0;
+    transition: opacity 0.6s ease-out;
+  }
+
+  .next-btn-wrap {
+    margin-top: 40px;
+    text-align: center;
+  }
+
+  .next-btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border: 2px solid #000;
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+    border-radius: 4px;
+  }
+
+  footer {
+    text-align: center;
+    margin-top: 60px;
+    padding-bottom: 40px;
+    color: #444;
+  }
+
 </style>
 </head>
 <body>
 
+<!-- タイトル -->
 <header id="titleHeader">
-  <span class="kanji-box" id="kanjiBox"><span>検</span></span>
-  閲世界
+  <span class="kanji-box" id="kanjiBox"><span>検</span></span>閲世界
 </header>
+
+<!-- 本編（イントロ） -->
+<div class="container" id="mainContent">
+  <h2>イントロダクション</h2>
+  <p>
+    あなたが目を覚ましたのは、文字だらけの奇妙な世界。<br>
+    文字にはどこか違和感があることにあなたは気付く。<br><br>
+    あなたに与えられた能力は文字を修正する力。<br>
+    文字を正しく修正して謎を解き、この歪んだ世界から帰還せよ。
+  </p>
+
+  <div class="next-btn-wrap">
+    <a class="next-btn" href="world.html">進む</a>
+  </div>
+
+  <footer>
+    Page 1
+  </footer>
+</div>
 
 <script>
 window.addEventListener("load", () => {
   const header = document.getElementById("titleHeader");
+  const main = document.getElementById("mainContent");
 
-  // ① ヘッダーを表示
+  // ① タイトル表示
   setTimeout(() => {
     header.style.opacity = "1";
   }, 200);
 
-  // ② 検のモザイク演出をスタート
+  // ② 検だけモザイク開始
   setTimeout(() => {
     startMosaic();
-  }, 230); 
-});
+  }, 250);
 
+  // ③ 本文を後からフェードイン
+  setTimeout(() => {
+    main.style.opacity = "1";
+  }, 900);
+});
 
 /* ================================
    検のランダムタイルモザイク生成
@@ -88,31 +145,28 @@ window.addEventListener("load", () => {
 function startMosaic() {
   const box = document.getElementById("kanjiBox");
 
-  // タイルの分割数（増やすほど細かいモザイク）
-  const grid = 6;  // 6×6 のタイル
+  // タイル分割数（粗め6、細かめ10〜12）
+  const grid = 7;
+
   const container = document.createElement("div");
   container.className = "mosaic-container";
   container.style.gridTemplateColumns = `repeat(${grid}, 1fr)`;
   container.style.gridTemplateRows = `repeat(${grid}, 1fr)`;
 
-  // タイル生成
   for (let i = 0; i < grid * grid; i++) {
     const tile = document.createElement("div");
     tile.className = "tile";
 
-    // 出現タイミング（完全ランダム）
-    const delay = Math.random() * 200; // 0〜200msのランダム
-    tile.style.animationDelay = `${delay}ms`;
+    // ランダムな出現タイミング
+    tile.style.animationDelay = `${Math.random() * 200}ms`;
 
     container.appendChild(tile);
   }
 
   box.appendChild(container);
 
-  // モザイクが完全に終わったら自動で削除
-  setTimeout(() => {
-    container.remove();
-  }, 600);
+  // 演出終了後に削除
+  setTimeout(() => container.remove(), 700);
 }
 </script>
 
