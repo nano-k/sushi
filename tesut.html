@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>検閲世界</title>
+
+<style>
+/* -------------------------
+   イントロ（文字だけモザイク）
+-------------------------- */
+#introText {
+  position: fixed;
+  inset: 0;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  font-size: 3rem;
+  letter-spacing: 0.2em;
+  z-index: 9999;
+
+  /* 最初は強めモザイク + 透明 */
+  filter: blur(12px);
+  opacity: 0;
+  animation: 
+    textMosaicIn 1.2s ease forwards,     /* モザイク→鮮明 */
+    textMosaicOut 1s ease forwards 2.2s; /* 鮮明→モザイク→消える */
+}
+
+@keyframes textMosaicIn {
+  0% {
+    filter: blur(12px);
+    opacity: 0;
+  }
+  100% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes textMosaicOut {
+  0% {
+    filter: blur(0px);
+    opacity: 1;
+  }
+  100% {
+    filter: blur(20px);
+    opacity: 0;
+  }
+}
+
+/* -------------------------
+   本文
+-------------------------- */
+#content {
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+
+#content.show {
+  opacity: 1;
+}
+</style>
+
+</head>
+<body>
+
+<!-- モザイク演出するテキスト -->
+<div id="introText">検閲世界</div>
+
+<!-- 本文 -->
+<div id="content">
+  <h1>ページ内容</h1>
+  <p>テキストモザイクのイントロが終わると表示されます。</p>
+</div>
+
+<script>
+window.addEventListener("load", () => {
+  // アニメ終わり後に本文表示
+  setTimeout(() => {
+    document.getElementById("content").classList.add("show");
+  }, 3200);
+});
+</script>
+
+</body>
+</html>
