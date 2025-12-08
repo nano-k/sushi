@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>検閲世界</title>
-<link rel="stylesheet" href="css/style.css">
 
 <style>
-/* ---- 画面基本 ---- */
+/* ---- 基本 ---- */
 body {
   margin: 0;
   padding: 0;
@@ -16,7 +15,7 @@ body {
   overflow: hidden;
 }
 
-/* ---- タイトル表示用 ---- */
+/* ---- 中央タイトルエリア ---- */
 #censorTitleWrapper {
   position: fixed;
   inset: 0;
@@ -25,7 +24,7 @@ body {
   align-items: center;
   background: #fff;
   z-index: 999;
-  transition: opacity 1s ease;
+  transition: opacity 0.4s ease; /* ← 高速フェード */
 }
 
 #censorTitle {
@@ -43,20 +42,20 @@ body {
   height: 1em;
 }
 
-/* モザイクタイル */
+/* ---- モザイクタイル ---- */
 .mosaic-tile {
   position: absolute;
   width: 12px;
   height: 12px;
   background: #000;
-  animation: tileFade 0.6s forwards;
+  animation: tileFade 0.35s forwards; /* ← 高速化 */
 }
 
 @keyframes tileFade {
   to { opacity: 0; transform: scale(0.6); }
 }
 
-/* ---- ページ本文 ---- */
+/* ---- 本文 ---- */
 .container {
   opacity: 0;
   transition: opacity 1.5s ease;
@@ -96,11 +95,11 @@ footer {
   padding: 20px;
 }
 </style>
-
 </head>
+
 <body>
 
-<!-- ======= 最初のモザイク演出エリア ======= -->
+<!-- ======= 最初のモザイク演出 ======= -->
 <div id="censorTitleWrapper">
   <div id="censorTitle">
     <span id="charKen">検</span>
@@ -137,7 +136,7 @@ footer {
 
 <script>
 // =======================================
-// 検 の文字だけランダムタイルでモザイク表示
+// 検 の文字にランダムモザイク（高速 & 位置オフセット）
 // =======================================
 function createMosaic() {
   const ken = document.getElementById("charKen");
@@ -147,16 +146,19 @@ function createMosaic() {
   const cols = Math.ceil(rect.width / tileSize);
   const rows = Math.ceil(rect.height / tileSize);
 
+  // モザイク位置を少し下げる
+  const offsetY = 4;
+
   for (let y = 0; y < rows; y++) {
     for (let x = 0; x < cols; x++) {
       const tile = document.createElement("div");
       tile.classList.add("mosaic-tile");
 
       tile.style.left = `${x * tileSize}px`;
-      tile.style.top = `${y * tileSize}px`;
+      tile.style.top = `${y * tileSize + offsetY}px`;
 
-      // ランダムで開始遅延
-      tile.style.animationDelay = `${Math.random() * 0.6}s`;
+      // 遅延も高速化
+      tile.style.animationDelay = `${Math.random() * 0.35}s`;
 
       ken.appendChild(tile);
     }
@@ -167,19 +169,20 @@ createMosaic();
 
 
 // =======================================
-// モザイク → タイトルフェードアウト → 本文フェードイン
+// モザイク → タイトル高速フェードアウト → 本文フェードイン
 // =======================================
 setTimeout(() => {
-  // タイトルフェードアウト
+
+  // タイトル高速フェードアウト
   document.getElementById("censorTitleWrapper").style.opacity = 0;
 
-  // 本文フェードイン
+  // 本文表示もさらに早く開始
   setTimeout(() => {
     document.getElementsByClassName("container")[0].classList.add("show-content");
     document.body.style.overflow = "auto";
-  }, 900);
+  }, 400);
 
-}, 1800); // モザイクを見せる時間
+}, 700); // ← モザイク表示短め
 </script>
 
 </body>
