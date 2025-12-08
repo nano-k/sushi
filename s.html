@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>検閲世界</title>
+<style>
+  body {
+    margin: 0;
+    background: #fff;
+    font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+  }
+
+  header {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 80px;
+    letter-spacing: 4px;
+    color: #000;
+    opacity: 0;               /* 最初は非表示 */
+    transition: opacity 0.6s ease-out;
+  }
+
+  /* 「検」だけモザイクボックスをかぶせる */
+  .kanji-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .mosaic {
+    position: absolute;
+    inset: 0;
+    background: 
+      repeating-linear-gradient(0deg, #000 0 6px, #fff 6px 12px),
+      repeating-linear-gradient(90deg, #000 0 6px, #fff 6px 12px);
+    image-rendering: pixelated;
+    z-index: 2;
+    animation: mosaicOut 0.45s steps(5) forwards;
+    animation-delay: 0.45s; /* ←「検」だけ遅らせる時間 */
+  }
+
+  @keyframes mosaicOut {
+    0%   { opacity: 1; transform: scale(1); }
+    100% { opacity: 0; transform: scale(1.2); }
+  }
+
+</style>
+</head>
+<body>
+
+<header id="titleHeader">
+  <span class="kanji-wrapper">
+    <span style="position:relative; z-index:1;">検</span>
+    <span class="mosaic"></span>
+  </span>
+  閲世界
+</header>
+
+<script>
+  // ヘッダー全体を先に表示（ただし「検」だけモザイク付き）
+  window.addEventListener("load", () => {
+    const header = document.getElementById("titleHeader");
+
+    // ヘッダー全体がふわっと表示
+    setTimeout(() => {
+      header.style.opacity = "1";
+    }, 200); // 少し間を置いて表示
+  });
+</script>
+
+</body>
+</html>
