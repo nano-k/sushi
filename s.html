@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>検閲世界</title>
+
 <style>
   body {
     margin: 0;
@@ -14,58 +15,105 @@
   header {
     text-align: center;
     font-size: 40px;
-    margin-top: 80px;
+    margin-top: 100px;
     letter-spacing: 4px;
     color: #000;
-    opacity: 0;               /* 最初は非表示 */
+    opacity: 0;
     transition: opacity 0.6s ease-out;
   }
 
-  /* 「検」だけモザイクボックスをかぶせる */
-  .kanji-wrapper {
+  /* 「検」の文字を包む */
+  .kanji-box {
     position: relative;
     display: inline-block;
+    width: 48px; /* 好みで調整可 */
+    height: 48px;
   }
 
-  .mosaic {
+  .kanji-box span {
+    position: relative;
+    z-index: 10;
+  }
+
+  /* モザイクタイルのコンテナ */
+  .mosaic-container {
     position: absolute;
     inset: 0;
-    background: 
-      repeating-linear-gradient(0deg, #000 0 6px, #fff 6px 12px),
-      repeating-linear-gradient(90deg, #000 0 6px, #fff 6px 12px);
-    image-rendering: pixelated;
-    z-index: 2;
-    animation: mosaicOut 0.45s steps(5) forwards;
-    animation-delay: 0.45s; /* ←「検」だけ遅らせる時間 */
+    z-index: 20;
+    pointer-events: none;
+    display: grid;
   }
 
-  @keyframes mosaicOut {
-    0%   { opacity: 1; transform: scale(1); }
-    100% { opacity: 0; transform: scale(1.2); }
+  /* タイル */
+  .tile {
+    background: #000;
+    opacity: 0;
+    animation: tileFade 0.4s forwards;
   }
 
+  /* タイルがランダムに出てランダムに消える */
+  @keyframes tileFade {
+    0%   { opacity: 0; }
+    10%  { opacity: 0.9; }
+    100% { opacity: 0; }
+  }
 </style>
 </head>
 <body>
 
 <header id="titleHeader">
-  <span class="kanji-wrapper">
-    <span style="position:relative; z-index:1;">検</span>
-    <span class="mosaic"></span>
-  </span>
+  <span class="kanji-box" id="kanjiBox"><span>検</span></span>
   閲世界
 </header>
 
 <script>
-  // ヘッダー全体を先に表示（ただし「検」だけモザイク付き）
-  window.addEventListener("load", () => {
-    const header = document.getElementById("titleHeader");
+window.addEventListener("load", () => {
+  const header = document.getElementById("titleHeader");
 
-    // ヘッダー全体がふわっと表示
-    setTimeout(() => {
-      header.style.opacity = "1";
-    }, 200); // 少し間を置いて表示
-  });
+  // ① ヘッダーを表示
+  setTimeout(() => {
+    header.style.opacity = "1";
+  }, 200);
+
+  // ② 検のモザイク演出をスタート
+  setTimeout(() => {
+    startMosaic();
+  }, 230); 
+});
+
+
+/* ================================
+   検のランダムタイルモザイク生成
+   ================================ */
+function startMosaic() {
+  const box = document.getElementById("kanjiBox");
+
+  // タイルの分割数（増やすほど細かいモザイク）
+  const grid = 6;  // 6×6 のタイル
+  const container = document.createElement("div");
+  container.className = "mosaic-container";
+  container.style.gridTemplateColumns = `repeat(${grid}, 1fr)`;
+  container.style.gridTemplateRows = `repeat(${grid}, 1fr)`;
+
+  // タイル生成
+  for (let i = 0; i < grid * grid; i++) {
+    const tile = document.createElement("div");
+    tile.className = "tile";
+
+    // 出現タイミング（完全ランダム）
+    const delay = Math.random() * 200; // 0〜200msのランダム
+    tile.style.animationDelay = `${delay}ms`;
+
+    container.appendChild(tile);
+  }
+
+  box.appendChild(container);
+
+  // モザイクが完全に終わったら自動で削除
+  setTimeout(() => {
+    container.remove();
+  }, 600);
+}
 </script>
 
 </body>
