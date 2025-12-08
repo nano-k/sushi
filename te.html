@@ -4,68 +4,104 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>検閲世界</title>
+
 <style>
   body {
     margin: 0;
-    background: white;
+    background: #fff;
+    overflow: hidden;
+    font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
   }
-  #c {
-    position: fixed;
-    inset: 0;
-    background: white;
-    z-index: 9999;
+
+  /* 中央の文字 */
+  #text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: black;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    pointer-events: none;
+  }
+
+  /* モザイクレイヤー（キャンバス） */
+  #mosaic {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 </style>
+
 </head>
 <body>
 
-<canvas id="c"></canvas>
+<canvas id="mosaic"></canvas>
+<div id="text">検閲世界</div>
 
 <script>
-window.onload = () => {
-  const canvas = document.getElementById("c");
-  const ctx = canvas.getContext("2d");
+/* ================================
+   初期設定
+================================ */
+const canvas = document.getElementById("mosaic");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  function resize() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+const textEl = document.getElementById("text");
+
+/* 検閲タイルの初期サイズ（粗い）→ 小さくしていく */
+let tileSize = 120;  
+let minTileSize = 6; 
+let animationSpeed = 0.92; // 0.90〜0.97で調整（小さくなるスピード）
+
+/* ================================
+   モザイク描画
+================================ */
+function drawMosaic(size) {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  for (let y = 0; y < canvas.height; y += size) {
+    for (let x = 0; x < canvas.width; x += size) {
+      ctx.fillStyle = (Math.random() > 0.5) ? "#000" : "#333";
+      ctx.fillRect(x, y, size, size);
+    }
   }
-  resize();
-  window.addEventListener("resize", resize);
+}
 
-  function drawBaseText(targetCtx) {
-    targetCtx.fillStyle = "white";
-    targetCtx.fillRect(0, 0, canvas.width, canvas.height);
+/* ================================
+   アニメーション開始
+================================ */
+function animate() {
+  drawMosaic(tileSize);
+  tileSize *= animationSpeed;
 
-    targetCtx.fillStyle = "black";
-    targetCtx.font = "bold 80px serif";
-    targetCtx.textAlign = "center";
-    targetCtx.textBaseline = "middle";
-    targetCtx.fillText("検閲世界", canvas.width / 2, canvas.height / 2);
-  }
-
-  let pixelSize = 40;
-
-  function render() {
-    pixelSize -= 0.3;
-    if (pixelSize < 2) pixelSize = 40;
-
-    const temp = document.createElement("canvas");
-    temp.width = canvas.width / pixelSize;
-    temp.height = canvas.height / pixelSize;
-    const tctx = temp.getContext("2d");
-
-    drawBaseText(tctx);
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.imageSmoothingEnabled = false;
-    ctx.drawImage(temp, 0, 0, temp.width, temp.height, 0, 0, canvas.width, canvas.height);
-
-    requestAnimationFrame(render);
+  // 一定以下になったらテキストが浮かび上がる
+  if (tileSize < 40 && textEl.style.opacity == "0") {
+    textEl.style.opacity = 1;
   }
 
-  render();
-};
+  // モザイクが十分小さくなったら終了して消す
+  if (tileSize <= minTileSize) {
+    setTimeout(() => {
+      canvas.style.transition = "opacity 0.8s";
+      canvas.style.opacity = 0;
+
+      setTimeout(() => {
+        canvas.remove();
+      }, 900);
+
+    }, 600);
+
+    return;
+  }
+
+  requestAnimationFrame(animate);
+}
+
+/* 開始 */
+animate();
+
 </script>
 
 </body>
