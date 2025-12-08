@@ -12,20 +12,7 @@ body {
 }
 
 /* ---------------------------------------
-   ピクセルモザイク用 SVG フィルター
----------------------------------------- */
-svg {
-  position: absolute;
-  width: 0;
-  height: 0;
-}
-#pixelate {
-  /* ピクセルの大きさ（調整可） */
-  --pixel-size: 8;
-}
-
-/* ---------------------------------------
-   イントロテキスト
+   ピクセル風テキストアニメーション
 ---------------------------------------- */
 #introText {
   position: fixed;
@@ -40,36 +27,38 @@ svg {
   color: black;
   letter-spacing: 0.2em;
 
-  /* 最初はモザイク＋透明 */
-  filter: url(#pixelate);
+  /* ピクセルっぽく見せるため image-rendering を利用 */
+  image-rendering: pixelated;
+
+  /* 最初は大きなピクセル状態（scale で粗さを出す） */
+  transform: scale(4);
   opacity: 0;
-  z-index: 9999;
 
   animation:
-    pixelFadeIn 2.5s ease forwards,      /* ゆっくり鮮明になる */
-    pixelFadeOut 1.6s ease forwards 3.5s; /* またモザイク化→消える */
+    pixelIn 2.8s ease forwards,
+    pixelOut 1.6s ease forwards 3.6s;
 }
 
-/* ゆっくり鮮明化 */
-@keyframes pixelFadeIn {
+/* ゆっくりピクセル → くっきり表示 */
+@keyframes pixelIn {
   0% {
-    filter: url(#pixelate);
+    transform: scale(4);
     opacity: 0;
   }
   100% {
-    filter: none;
+    transform: scale(1);
     opacity: 1;
   }
 }
 
-/* 再びモザイク化→透明 */
-@keyframes pixelFadeOut {
+/* くっきり → ピクセル → 消える */
+@keyframes pixelOut {
   0% {
-    filter: none;
+    transform: scale(1);
     opacity: 1;
   }
   100% {
-    filter: url(#pixelate);
+    transform: scale(4);
     opacity: 0;
   }
 }
@@ -90,14 +79,22 @@ svg {
 </head>
 <body>
 
-<!-- ピクセルモザイクを生成するSVGフィルタ -->
-<svg>
-  <filter id="pixelate">
-    <feFlood x="0" y="0" width="100%" height="100%" result="flood"/>
-    <feComposite in="flood" in2="SourceGraphic" operator="in" result="mask"/>
-    <feTile in="mask" result="tiled" width="var(--pixel-size)" height="var(--pixel-size)"/>
-    <feComposite in="tiled" in2="SourceGraphic" operator="in"/>
-  </filter>
-</svg>
+<!-- ピクセル風モザイク演出テキスト -->
+<div id="introText">検閲世界</div>
 
-<!-- モザイク演出テ
+<!-- 本文 -->
+<div id="content">
+  <h1>ページ内容</h1>
+  <p>イントロ演出後に表示される領域。</p>
+</div>
+
+<script>
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.getElementById("content").classList.add("show");
+  }, 5400); // アニメ時間に合わせて調整済み
+});
+</script>
+
+</body>
+</html>
