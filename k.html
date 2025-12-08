@@ -4,189 +4,164 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>検閲世界</title>
-
 <style>
-/* ---- 基本 ---- */
-body {
-  margin: 0;
-  padding: 0;
-  background: #fff;
-  font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-  overflow: hidden;
-}
-
-/* ---- 中央のタイトル演出 ---- */
-#censorTitleWrapper {
-  position: fixed;
-  inset: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: #fff;
-  z-index: 999;
-  transition: opacity 0.35s ease; /* タイトル消失 */
-}
-
-#censorTitle {
-  font-size: 48px;
-  letter-spacing: 0.15em;
-  display: flex;
-  gap: 0.1em;
-  color: #000;
-}
-
-#charKen {
-  position: relative;
-  display: inline-block;
-  width: 1em;
-  height: 1em;
-}
-
-/* ---- モザイクタイル ---- */
-.mosaic-tile {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  background: #000;
-  opacity: 1;
-  animation: tileFade 0.28s forwards;
-}
-
-@keyframes tileFade {
-  to {
-    opacity: 0;
-    transform: scale(0.7);
+  body {
+    margin: 0;
+    background: #fff;
+    font-family: "Noto Serif JP", serif;
+    overflow: hidden;
   }
-}
 
-/* ---- 本文 ---- */
-.container {
-  opacity: 0;
-  transition: opacity 1.2s ease; /* ← ゆっくり浮かび上がる */
-}
+  /* 黒白ノイズ（砂嵐） */
+  #noise {
+    position: fixed;
+    inset: 0;
+    background: repeating-radial-gradient(#000 0 1px, #fff 1px 2px);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 2000;
+  }
 
-.show-content {
-  opacity: 1;
-}
+  /* モザイクタイル */
+  #mosaicContainer {
+    position: fixed;
+    top: 55%; /* → やや下に調整 */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 80px;
+    display: flex;
+    flex-wrap: wrap;
+    opacity: 1;
+    z-index: 1500;
+  }
+  .tile {
+    width: 20px;
+    height: 20px;
+    background: #333;
+    opacity: 0;
+  }
 
-header {
-  text-align: center;
-  padding: 20px 0;
-  font-size: 28px;
-}
+  /* 検閲世界（最初に出るタイトル） */
+  #titleCensored {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    letter-spacing: 8px;
+    opacity: 1;
+    z-index: 1200;
+    transition: opacity 0.3s;
+  }
 
-main {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 20px;
-}
+  /* ヘッダー & 本文（最初は透明） */
+  header, main {
+    opacity: 0;
+    transition: opacity 2.0s ease;
+    z-index: 10;
+    position: relative;
+  }
 
-.next-btn-wrap {
-  margin-top: 30px;
-  text-align: center;
-}
+  header {
+    font-size: 40px;
+    text-align: center;
+    margin-top: 40px;
+  }
 
-.next-btn {
-  display: inline-block;
-  text-decoration: none;
-  padding: 10px 20px;
-  border: 1px solid #000;
-  color: #000;
-}
-
-footer {
-  text-align: center;
-  padding: 20px;
-}
+  main {
+    margin: 60px auto;
+    max-width: 700px;
+    font-size: 20px;
+    line-height: 1.8;
+  }
 </style>
 </head>
-
 <body>
 
-<!-- ======= 検の文字モザイク演出 ======= -->
-<div id="censorTitleWrapper">
-  <div id="censorTitle">
-    <span id="charKen">検</span>
-    <span>閲世界</span>
-  </div>
+<div id="noise"></div>
+
+<div id="mosaicContainer"></div>
+
+<div id="titleCensored">
+  <span id="ken">検</span>閲世界
 </div>
 
-<!-- ======= 本文 ======= -->
 <header>検閲世界</header>
 
-<div class="container">
 <main>
-  <section class="page" data-page="1">
-    <h2 class="section-title">イントロダクション</h2>
-    <p>
-      あなたが目を覚ましたのは、文字だらけの奇妙な世界。<br>
-      文字にはどこか違和感があることにあなたは気付く。<br><br>
-      あなたに与えられた能力は文字を修正する力。<br>
-      文字を正しく修正して謎を解き、この歪んだ世界から帰還せよ。
-    </p>
-
-    <div class="next-btn-wrap">
-      <a class="next-btn" href="world.html">進む</a>
-    </div>
-  </section>
+  これは本文です。<br>
+  ここに本編を入れてください。<br>
+  フェードインでゆっくり浮かび上がります。
 </main>
 
-<footer>
-  Page <span id="pageNum">1</span>
-</footer>
-</div>
-
-
 <script>
-// =======================================
-// 検 の文字にランダムモザイク
-// =======================================
-function createMosaic() {
-  const ken = document.getElementById("charKen");
-  const rect = ken.getBoundingClientRect();
-  
-  const tileSize = 14;
-  const cols = Math.ceil(rect.width / tileSize);
-  const rows = Math.ceil(rect.height / tileSize);
-
-  const offsetY = 4; // モザイクを少し下に
-
-  for (let y = 0; y < rows; y++) {
-    for (let x = 0; x < cols; x++) {
-      const tile = document.createElement("div");
-      tile.classList.add("mosaic-tile");
-
-      tile.style.left = `${x * tileSize}px`;
-      tile.style.top = `${y * tileSize + offsetY}px`;
-
-      tile.style.animationDelay = `${Math.random() * 0.28}s`;
-
-      ken.appendChild(tile);
-    }
-  }
+/* ---- モザイク生成 ---- */
+const mosaic = document.getElementById("mosaicContainer");
+for (let i = 0; i < 40; i++) {
+  const t = document.createElement("div");
+  t.classList.add("tile");
+  mosaic.appendChild(t);
 }
 
-createMosaic();
+function playMosaic() {
+  const tiles = document.querySelectorAll(".tile");
 
-
-// =======================================
-// タイトル消失 → 真っ白 → 本文ゆっくり表示
-// =======================================
-setTimeout(() => {
-
-  // 1. タイトルを消す
-  document.getElementById("censorTitleWrapper").style.opacity = 0;
-
-  // 2. 真っ白の状態を 400ms 維持
+  // 「検」だけ出遅れ演出
   setTimeout(() => {
+    tiles.forEach((tile, i) => {
+      setTimeout(() => {
+        tile.style.opacity = 1;
+      }, Math.random() * 300);
+    });
+  }, 200);
 
-    // 3. 本文ゆっくりフェードイン
-    document.querySelector(".container").classList.add("show-content");
-    document.body.style.overflow = "auto";
+  // モザイクが消える瞬間まで「検」を消す
+  const ken = document.getElementById("ken");
+  ken.style.opacity = 0;
 
-  }, 400); // 真っ白時間
+  // モザイク消滅
+  setTimeout(() => {
+    tiles.forEach((tile) => (tile.style.opacity = 0));
+    ken.style.opacity = 1; // モザイクが終わった瞬間に出現
+  }, 1000);
+}
 
-}, 650); // モザイク終了待ち
+/* ---- 砂嵐（黒白ノイズ） ---- */
+function playNoise() {
+  const noise = document.getElementById("noise");
+  noise.style.opacity = 1;
+  setTimeout(() => {
+    noise.style.opacity = 0;
+  }, 300);
+}
+
+/* ---- メインタイトル消去 → 白転 → 本文表示 ---- */
+function playFinalFade() {
+  const title = document.getElementById("titleCensored");
+
+  // タイトルをすぐ消す（速め）
+  title.style.opacity = 0;
+
+  // 白転 → 本文フェードイン
+  setTimeout(() => {
+    document.querySelector("header").style.opacity = 1;
+    document.querySelector("main").style.opacity = 1;
+  }, 400);
+}
+
+/* ---- 全体進行 ---- */
+setTimeout(() => {
+  playMosaic();
+}, 100);
+
+setTimeout(() => {
+  playNoise();
+}, 1200);
+
+setTimeout(() => {
+  playFinalFade();
+}, 1500);
 </script>
 
 </body>
