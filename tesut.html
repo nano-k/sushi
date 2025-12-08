@@ -6,57 +6,80 @@
 <title>検閲世界</title>
 
 <style>
-/* -------------------------
-   イントロ（文字だけモザイク）
--------------------------- */
+body {
+  margin: 0;
+  background: white;
+}
+
+/* ---------------------------------------
+   ピクセルモザイク用 SVG フィルター
+---------------------------------------- */
+svg {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+#pixelate {
+  /* ピクセルの大きさ（調整可） */
+  --pixel-size: 8;
+}
+
+/* ---------------------------------------
+   イントロテキスト
+---------------------------------------- */
 #introText {
   position: fixed;
   inset: 0;
-  color: white;
+  background: white;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: black;
+
+  font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
   font-size: 3rem;
+  color: black;
   letter-spacing: 0.2em;
+
+  /* 最初はモザイク＋透明 */
+  filter: url(#pixelate);
+  opacity: 0;
   z-index: 9999;
 
-  /* 最初は強めモザイク + 透明 */
-  filter: blur(12px);
-  opacity: 0;
-  animation: 
-    textMosaicIn 1.2s ease forwards,     /* モザイク→鮮明 */
-    textMosaicOut 1s ease forwards 2.2s; /* 鮮明→モザイク→消える */
+  animation:
+    pixelFadeIn 2.5s ease forwards,      /* ゆっくり鮮明になる */
+    pixelFadeOut 1.6s ease forwards 3.5s; /* またモザイク化→消える */
 }
 
-@keyframes textMosaicIn {
+/* ゆっくり鮮明化 */
+@keyframes pixelFadeIn {
   0% {
-    filter: blur(12px);
+    filter: url(#pixelate);
     opacity: 0;
   }
   100% {
-    filter: blur(0px);
+    filter: none;
     opacity: 1;
   }
 }
 
-@keyframes textMosaicOut {
+/* 再びモザイク化→透明 */
+@keyframes pixelFadeOut {
   0% {
-    filter: blur(0px);
+    filter: none;
     opacity: 1;
   }
   100% {
-    filter: blur(20px);
+    filter: url(#pixelate);
     opacity: 0;
   }
 }
 
-/* -------------------------
+/* ---------------------------------------
    本文
--------------------------- */
+---------------------------------------- */
 #content {
   opacity: 0;
-  transition: opacity 0.8s ease;
+  transition: opacity 1s ease;
 }
 
 #content.show {
@@ -67,23 +90,14 @@
 </head>
 <body>
 
-<!-- モザイク演出するテキスト -->
-<div id="introText">検閲世界</div>
+<!-- ピクセルモザイクを生成するSVGフィルタ -->
+<svg>
+  <filter id="pixelate">
+    <feFlood x="0" y="0" width="100%" height="100%" result="flood"/>
+    <feComposite in="flood" in2="SourceGraphic" operator="in" result="mask"/>
+    <feTile in="mask" result="tiled" width="var(--pixel-size)" height="var(--pixel-size)"/>
+    <feComposite in="tiled" in2="SourceGraphic" operator="in"/>
+  </filter>
+</svg>
 
-<!-- 本文 -->
-<div id="content">
-  <h1>ページ内容</h1>
-  <p>テキストモザイクのイントロが終わると表示されます。</p>
-</div>
-
-<script>
-window.addEventListener("load", () => {
-  // アニメ終わり後に本文表示
-  setTimeout(() => {
-    document.getElementById("content").classList.add("show");
-  }, 3200);
-});
-</script>
-
-</body>
-</html>
+<!-- モザイク演出テ
