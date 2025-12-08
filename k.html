@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>検閲世界</title>
+
+<style>
+  body {
+    margin: 0;
+    background: #fff;
+    overflow: hidden;
+    font-family: "Noto Sans JP", sans-serif;
+  }
+
+  /* --- モザイクタイル --- */
+  #mosaicCanvas {
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 180px;
+    height: 180px;
+    z-index: 20;
+    opacity: 1;
+    transition: opacity 0.25s ease-out;
+    image-rendering: pixelated;
+  }
+
+  /* --- タイトル --- */
+  #titleText {
+    position: fixed;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    letter-spacing: 0.2em;
+    opacity: 0;
+    z-index: 10;
+    transition: opacity 0.2s;
+  }
+
+  /* 検の文字だけ最初非表示 */
+  #kan {
+    opacity: 0;
+  }
+
+  /* --- ノイズ（砂嵐） --- */
+  #noiseCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 30;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s linear;
+  }
+
+  /* --- 本文 --- */
+  .content {
+    opacity: 0;
+    padding: 40px;
+    z-index: 1;
+    line-height: 1.8;
+    transition: opacity 0.6s ease-out;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- モザイク -->
+<canvas id="mosaicCanvas"></canvas>
+
+<!-- 砂嵐ノイズ -->
+<canvas id="noiseCanvas"></canvas>
+
+<!-- タイトル -->
+<div id="titleText">
+  <span id="kan">検</span>閲世界
+</div>
+
+<!-- 本文 -->
+<div class="content">
+  <h2>イントロダクション</h2>
+  <p>
+    あなたが目を覚ましたのは、文字だらけの奇妙な世界。<br>
+    文字にはどこか違和感があることにあなたは気付く。<br><br>
+    あなたに与えられた能力は文字を修正する力。<br>
+    文字を正しく修正して謎を解き、この歪んだ世界から帰還せよ。
+  </p>
+  <a href="world.html">進む</a>
+</div>
+
+<script>
+/* =======================================================
+    モザイクアニメーション（タイルランダム出現）
+======================================================= */
+const mosaic = document.getElementById("mosaicCanvas");
+const ctx = mosaic.getContext("2d");
+const tileSize = 18;
+const cols = Math.floor(mosaic.width / tileSize);
+const rows = Math.floor(mosaic.height / tileSize);
+
+let tiles = [];
+for (let y = 0; y < rows; y++) {
+  for (let x = 0; x < cols; x++) {
+    tiles.push({ x, y, show: false });
+  }
+}
+tiles.sort(() => Math.random() - 0.5);
+
+let idx = 0;
+function drawMosaic() {
+  if (idx < tiles.length) {
+    for (let n = 0; n < 6; n++) {
+      if (idx >= tiles.length) break;
+      let t = tiles[idx];
+      ctx.fillStyle = "#888";
+      ctx.fillRect(t.x * tileSize, t.y * tileSize, tileSize, tileSize);
+      idx++;
+    }
+    requestAnimationFrame(drawMosaic);
+  }
+}
+drawMosaic();
+
+/* =======================================================
+    検 → タイトル → ノイズ → 本文 の順で演出
+======================================================= */
+
+setTimeout(() => {
+  // モザイク消える & 「検」出現
+  mosaic.style.opacity = 0;
+  document.getElementById("kan").style.opacity = 1;
+  document.getElementById("titleText").style.opacity = 1;
+}, 800);
+
+
+/* --- 砂嵐ノイズ --- */
+const noiseCanvas = document.getElementById("noiseCanvas");
+const nctx = noiseCanvas.getContext("2d");
+noiseCanvas.width = window.innerWidth;
+noiseCanvas.height = window.innerHeight;
+
+function drawNoise() {
+  let imgData = nctx.createImageData(noiseCanvas.width, noiseCanvas.height);
+  for (let i = 0; i < imgData.data.length; i += 4) {
+    let r = Math.random() * 255;
+    imgData.data[i] = r;
+    imgData.data[i + 1] = r;
+    imgData.data[i + 2] = r;
+    imgData.data[i + 3] = 255;
+  }
+  nctx.putImageData(imgData, 0, 0);
+}
+
+let noiseInterval;
+
+/* --- ノイズ発生 → タイトル消去 → 本文表示 --- */
+setTimeout(() => {
+  // ノイズ発生
+  noiseCanvas.style.opacity = 1;
+  noiseInterval = setInterval(drawNoise, 30);
+
+  // タイトル消える
+  document.getElementById("titleText").style.opacity = 0;
+
+  // ノイズを短時間だけ出す
+  setTimeout(() => {
+    clearInterval(noiseInterval);
+    noiseCanvas.style.opacity = 0;
+
+    // 本文表示
+    document.querySelector(".content").style.opacity = 1;
+    document.body.style.overflow = "auto";
+  }, 250);
+}, 1200);
+
+</script>
+</body>
+</html>
