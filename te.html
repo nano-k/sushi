@@ -4,139 +4,67 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>検閲世界</title>
-
 <style>
-body {
-  margin: 0;
-  background: white;
-}
-
-/* キャンバス全画面配置 */
-#censorCanvas {
-  position: fixed;
-  inset: 0;
-  background: white;
-  z-index: 9999;
-}
-
-/* 本文（後でフェードイン） */
-#content {
-  opacity: 0;
-  transition: opacity 1.2s ease;
-}
-
-#content.show {
-  opacity: 1;
-}
+  body {
+    margin: 0;
+    background: white;
+  }
+  #c {
+    position: fixed;
+    inset: 0;
+    background: white;
+    z-index: 9999;
+  }
 </style>
 </head>
 <body>
 
-<canvas id="censorCanvas"></canvas>
-
-<div id="content">
-  <h1>ページ内容</h1>
-  <p>イントロ演出後に表示されます。</p>
-</div>
+<canvas id="c"></canvas>
 
 <script>
 window.onload = () => {
-  const canvas = document.getElementById("censorCanvas");
+  const canvas = document.getElementById("c");
   const ctx = canvas.getContext("2d");
-  resize();
-
-  // リサイズ時にも充填
-  window.addEventListener("resize", resize);
 
   function resize() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
   }
+  resize();
+  window.addEventListener("resize", resize);
 
-  const text = "検閲世界";
-  let frame = 0;
+  function drawBaseText(targetCtx) {
+    targetCtx.fillStyle = "white";
+    targetCtx.fillRect(0, 0, canvas.width, canvas.height);
 
-  // 文字の描画（元画像を作る）
-  function drawText(baseCtx) {
-    baseCtx.fillStyle = "white";
-    baseCtx.fillRect(0, 0, canvas.width, canvas.height);
-
-    baseCtx.fillStyle = "black";
-    baseCtx.font = "bold 72px 'Hiragino Mincho ProN','MS Mincho',serif";
-    baseCtx.textAlign = "center";
-    baseCtx.textBaseline = "middle";
-    baseCtx.fillText(text, canvas.width / 2, canvas.height / 2);
+    targetCtx.fillStyle = "black";
+    targetCtx.font = "bold 80px serif";
+    targetCtx.textAlign = "center";
+    targetCtx.textBaseline = "middle";
+    targetCtx.fillText("検閲世界", canvas.width / 2, canvas.height / 2);
   }
 
-  // モザイク処理
-  function drawPixelated(pixelSize, alpha = 1) {
-    const tempCanvas = document.createElement("canvas");
-    tempCanvas.width = canvas.width / pixelSize;
-    tempCanvas.height = canvas.height / pixelSize;
+  let pixelSize = 40;
 
-    const tctx = tempCanvas.getContext("2d");
+  function render() {
+    pixelSize -= 0.3;
+    if (pixelSize < 2) pixelSize = 40;
 
-    // 小さいサイズに縮小 → 画素を粗くする
-    drawText(tctx);
+    const temp = document.createElement("canvas");
+    temp.width = canvas.width / pixelSize;
+    temp.height = canvas.height / pixelSize;
+    const tctx = temp.getContext("2d");
 
-    // 大きく引き延ばし → モザイク化
-    ctx.save();
-    ctx.globalAlpha = alpha;
-    ctx.imageSmoothingEnabled = false;
+    drawBaseText(tctx);
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(temp, 0, 0, temp.width, temp.height, 0, 0, canvas.width, canvas.height);
 
-    ctx.drawImage(
-      tempCanvas,
-      0,
-      0,
-      tempCanvas.width,
-      tempCanvas.height,
-      0,
-      0,
-      canvas.width,
-      canvas.height
-    );
-    ctx.restore();
+    requestAnimationFrame(render);
   }
 
-  // アニメーションパート
-  function animate() {
-    frame++;
-
-    // 0〜80：モザイク → 徐々に解像
-    if (frame <= 80) {
-      const pixel = 30 - (frame * 0.3);  // 30→6
-      drawPixelated(Math.max(2, pixel));
-    }
-
-    // 80〜140：鮮明状態キープ
-    else if (frame <= 140) {
-      drawPixelated(2);
-    }
-
-    // 140〜200：再モザイク化
-    else if (frame <= 200) {
-      const pixel = 2 + (frame - 140) * 0.6; // 2→38
-      drawPixelated(pixel);
-    }
-
-    // 200〜240：フェードアウト
-    else if (frame <= 240) {
-      const alpha = 1 - (frame - 200) / 40;
-      drawPixelated(38, alpha);
-    }
-
-    // 終了 → キャンバス削除 → 本文表示
-    else {
-      canvas.style.display = "none";
-      document.getElementById("content").classList.add("show");
-      return;
-    }
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
+  render();
 };
 </script>
 
