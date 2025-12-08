@@ -13,7 +13,6 @@
     overflow: hidden;
   }
 
-  /* 中央文字 */
   #text {
     position: fixed;
     top: 50%;
@@ -44,7 +43,6 @@ const canvas = document.getElementById("mosaic");
 const ctx = canvas.getContext("2d");
 const textEl = document.getElementById("text");
 
-// 画面サイズを確実に反映
 function resize() {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -52,14 +50,10 @@ function resize() {
 resize();
 window.addEventListener("resize", resize);
 
-// 初期モザイクサイズ（粗い）
 let tileSize = 140;
-// 最小タイルサイズ
 const limitSize = 6;
-// タイル縮小率
-const shrinkRate = 0.90; // だいたい10%ずつ小さくなる
+const shrinkRate = 0.90;
 
-// 安定乱数（暗くなりすぎない）
 function tileColor() {
   const v = Math.random();
   if (v > 0.66) return "#111";
@@ -67,7 +61,6 @@ function tileColor() {
   return "#555";
 }
 
-// モザイク生成
 function draw(size) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let y = 0; y < canvas.height; y += size) {
@@ -78,29 +71,42 @@ function draw(size) {
   }
 }
 
-// 進行フラグ
 let showedText = false;
+let textHidden = false;
 
-// アニメーションループ
 function animate() {
   draw(tileSize);
   tileSize *= shrinkRate;
 
-  // テキスト表示（絶対発火するように数値で条件管理）
+  // テキスト表示（絶対発火）
   if (!showedText && tileSize < 40) {
     textEl.style.opacity = 1;
     showedText = true;
+
+    // 一定時間後に自動でフェードアウト
+    setTimeout(() => {
+      textEl.style.transition = "opacity 0.8s linear";
+      textEl.style.opacity = 0;
+
+      // 完全に消えたら削除
+      setTimeout(() => {
+        if (!textHidden) {
+          textEl.remove();
+          textHidden = true;
+        }
+      }, 900);
+
+    }, 1200);
   }
 
-  // 終了処理：モザイク除去
+  // モザイク終了
   if (tileSize <= limitSize) {
-    // 一旦描画を止める
     setTimeout(() => {
       canvas.style.transition = "opacity 1s linear";
       canvas.style.opacity = 0;
 
       setTimeout(() => {
-        canvas.remove(); // 絶対消える
+        canvas.remove();
       }, 1200);
     }, 500);
 
@@ -110,7 +116,6 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-// 開始
 animate();
 </script>
 
