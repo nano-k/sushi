@@ -9,26 +9,25 @@
   body {
     margin: 0;
     background: #fff;
-    overflow: hidden;
     font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
+    overflow: hidden;
   }
 
-  /* 中央の文字 */
+  /* 中央文字 */
   #text {
-    position: absolute;
+    position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 48px;
     color: black;
     opacity: 0;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 1.2s linear;
     pointer-events: none;
   }
 
-  /* モザイクレイヤー（キャンバス） */
   #mosaic {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
   }
@@ -41,57 +40,69 @@
 <div id="text">検閲世界</div>
 
 <script>
-/* ================================
-   初期設定
-================================ */
 const canvas = document.getElementById("mosaic");
 const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
 const textEl = document.getElementById("text");
 
-/* 検閲タイルの初期サイズ（粗い）→ 小さくしていく */
-let tileSize = 120;  
-let minTileSize = 6; 
-let animationSpeed = 0.92; // 0.90〜0.97で調整（小さくなるスピード）
+// 画面サイズを確実に反映
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener("resize", resize);
 
-/* ================================
-   モザイク描画
-================================ */
-function drawMosaic(size) {
+// 初期モザイクサイズ（粗い）
+let tileSize = 140;
+// 最小タイルサイズ
+const limitSize = 6;
+// タイル縮小率
+const shrinkRate = 0.90; // だいたい10%ずつ小さくなる
+
+// 安定乱数（暗くなりすぎない）
+function tileColor() {
+  const v = Math.random();
+  if (v > 0.66) return "#111";
+  if (v > 0.33) return "#333";
+  return "#555";
+}
+
+// モザイク生成
+function draw(size) {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   for (let y = 0; y < canvas.height; y += size) {
     for (let x = 0; x < canvas.width; x += size) {
-      ctx.fillStyle = (Math.random() > 0.5) ? "#000" : "#333";
+      ctx.fillStyle = tileColor();
       ctx.fillRect(x, y, size, size);
     }
   }
 }
 
-/* ================================
-   アニメーション開始
-================================ */
-function animate() {
-  drawMosaic(tileSize);
-  tileSize *= animationSpeed;
+// 進行フラグ
+let showedText = false;
 
-  // 一定以下になったらテキストが浮かび上がる
-  if (tileSize < 40 && textEl.style.opacity == "0") {
+// アニメーションループ
+function animate() {
+  draw(tileSize);
+  tileSize *= shrinkRate;
+
+  // テキスト表示（絶対発火するように数値で条件管理）
+  if (!showedText && tileSize < 40) {
     textEl.style.opacity = 1;
+    showedText = true;
   }
 
-  // モザイクが十分小さくなったら終了して消す
-  if (tileSize <= minTileSize) {
+  // 終了処理：モザイク除去
+  if (tileSize <= limitSize) {
+    // 一旦描画を止める
     setTimeout(() => {
-      canvas.style.transition = "opacity 0.8s";
+      canvas.style.transition = "opacity 1s linear";
       canvas.style.opacity = 0;
 
       setTimeout(() => {
-        canvas.remove();
-      }, 900);
-
-    }, 600);
+        canvas.remove(); // 絶対消える
+      }, 1200);
+    }, 500);
 
     return;
   }
@@ -99,9 +110,8 @@ function animate() {
   requestAnimationFrame(animate);
 }
 
-/* 開始 */
+// 開始
 animate();
-
 </script>
 
 </body>
