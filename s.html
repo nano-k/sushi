@@ -17,23 +17,26 @@
     font-size: 40px;
     margin-top: 100px;
     color: #000;
-    letter-spacing: 2px;   /* 自然に見える程度に調整 */
+    letter-spacing: 2px;
     opacity: 0;
     transition: opacity 0.6s ease-out;
   }
 
-  /* 「検」だけ包む（固定幅を削除して自然な幅に） */
+  /* 「検」だけラップする */
   .kanji-box {
     position: relative;
     display: inline-block;
   }
 
+  /* 検の文字そのもの（最初は非表示） */
   .kanji-box span {
     position: relative;
     z-index: 10;
+    opacity: 0; /* ← モザイク中は検を完全に消す */
+    transition: opacity 0.2s;
   }
 
-  /* モザイクタイルのコンテナ（検の文字ピッタリのサイズ） */
+  /* モザイク生成用 */
   .mosaic-container {
     position: absolute;
     inset: 0;
@@ -54,7 +57,7 @@
     100% { opacity: 0; }
   }
 
-  /* 本編エリア */
+  /* 本編のフェードイン */
   .container {
     margin-top: 120px;
     width: 90%;
@@ -99,7 +102,7 @@
   <span class="kanji-box" id="kanjiBox"><span>検</span></span>閲世界
 </header>
 
-<!-- 本編（イントロ） -->
+<!-- 本編 -->
 <div class="container" id="mainContent">
   <h2>イントロダクション</h2>
   <p>
@@ -123,41 +126,44 @@ window.addEventListener("load", () => {
   const header = document.getElementById("titleHeader");
   const main = document.getElementById("mainContent");
 
-  // ① タイトル表示
+  // タイトルフェードイン
   setTimeout(() => {
     header.style.opacity = "1";
   }, 200);
 
-  // ② 検だけモザイク開始
+  // 「検」モザイク開始
   setTimeout(() => {
     startMosaic();
-  }, 250);
+  }, 280);
 
-  // ③ 本文を後からフェードイン
+  // 本文フェードイン
   setTimeout(() => {
     main.style.opacity = "1";
-  }, 900);
+  }, 950);
 });
 
-/* ================================
-   検のランダムタイルモザイク生成
-   ================================ */
+
+/* ===========================
+    ランダムタイルモザイク
+   =========================== */
 function startMosaic() {
   const box = document.getElementById("kanjiBox");
 
-  // タイル分割数（粗め6、細かめ10〜12）
+  // タイルの粒度（粗い→5、細かい→10）
   const grid = 7;
 
   const container = document.createElement("div");
   container.className = "mosaic-container";
+
   container.style.gridTemplateColumns = `repeat(${grid}, 1fr)`;
   container.style.gridTemplateRows = `repeat(${grid}, 1fr)`;
 
+  // タイル生成
   for (let i = 0; i < grid * grid; i++) {
     const tile = document.createElement("div");
     tile.className = "tile";
 
-    // ランダムな出現タイミング
+    // ランダムなディレイでちらばらせる
     tile.style.animationDelay = `${Math.random() * 200}ms`;
 
     container.appendChild(tile);
@@ -165,8 +171,11 @@ function startMosaic() {
 
   box.appendChild(container);
 
-  // 演出終了後に削除
-  setTimeout(() => container.remove(), 700);
+  // モザイク終了 → 検の文字を表示
+  setTimeout(() => {
+    container.remove();
+    box.querySelector("span").style.opacity = "1";
+  }, 700);
 }
 </script>
 
